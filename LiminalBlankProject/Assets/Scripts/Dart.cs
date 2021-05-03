@@ -10,7 +10,8 @@ public class Dart : MonoBehaviour
         Recall
     }
     public Mode mode = Mode.Held;
-    Transform parent;
+    [SerializeField]
+    DartHolder holder;
 
     float timeInAir = 0.0f;
     float drag = 0.01f;
@@ -35,18 +36,20 @@ public class Dart : MonoBehaviour
     
     void Awake()
     {
-        parent = transform.parent;
         timeline = new List<TimePoint>();
         initialTransform = new TimePoint(transform.localRotation, transform.localPosition);
         timelineLimit = (int)(10f / Time.fixedDeltaTime);
     }
 
+    void AddTimePoint()
+    {
+        timeline.Add(new TimePoint(transform.rotation, MovingMap.transform.InverseTransformPoint(transform.position)));
+    }
+
     void FixedUpdate()
     { 
-        if (mode == Mode.Projectile && timeline.Count < timelineLimit) {
-            {
-                timeline.Add(new TimePoint(transform.rotation, MovingMap.transform.InverseTransformPoint(transform.position)));
-            }
+        if (mode == Mode.Projectile && timeline.Count < timelineLimit && !inactive) {
+            AddTimePoint();
         }
     }
 
@@ -57,6 +60,7 @@ public class Dart : MonoBehaviour
         inactive = false;
         timeInAir = 0.0f;
         velocity = force;
+        AddTimePoint();
     }
 
     public void Recall()
@@ -67,7 +71,7 @@ public class Dart : MonoBehaviour
 
     public void Hold()
     {
-        transform.SetParent(parent);
+        transform.SetParent(holder.transform);
         transform.localPosition = initialTransform.position;
         transform.localRotation = initialTransform.rotation;
         mode = Mode.Held;
@@ -79,7 +83,7 @@ public class Dart : MonoBehaviour
         if (mode == Mode.Recall)
         {
             float speed = (float)timelineLimit / (float)timeline.Count;
-            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 0.333f * speed));
+            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 0.05f * speed));
             if (timePosition > 0f && timeline.Count > 0)
             {
                 float smoothTime = Mathf.Sqrt(timePosition);
@@ -91,9 +95,10 @@ public class Dart : MonoBehaviour
                 Quaternion rotation = Quaternion.LerpUnclamped(a.rotation, b.rotation, fractal);
                 Vector3 position = Vector3.LerpUnclamped(a.position, b.position, fractal);
 
-                float lerpToHand = 1f - Mathf.Pow(1f - smoothTime, 4f);
-                transform.position = Vector3.Lerp(parent.transform.position, MovingMap.transform.TransformPoint(position), lerpToHand);
-                transform.rotation = Quaternion.Lerp(parent.transform.rotation, rotation, lerpToHand);
+                float lerpToHand = 1f - Mathf.Pow(1f - smoothTime, 3f);
+                Vector3 dartPosition = holder.GetDartPosition();
+                transform.position = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), lerpToHand);
+                transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(transform.position - dartPosition, holder.transform.up), rotation, lerpToHand);
             }
             else
             {

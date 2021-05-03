@@ -10,6 +10,9 @@ public class DartHolder : MonoBehaviour
     [SerializeField]
     Dart dart;
 
+    Vector3 dartPosition;
+    Vector3 debugDartPosition;
+
     Vector3 lastPosition;
     Vector3[] positionAvg = new Vector3[8];
 
@@ -21,8 +24,6 @@ public class DartHolder : MonoBehaviour
         if (deviceTransform == null) return;
         Vector3 devicePosition = deviceTransform.position;
 
-        if (dart.mode == Dart.Mode.Held)
-            dart.transform.localPosition = (transform.forward * 0.175f) + Vector3.forward * debugOffset;
         devicePosition += deviceTransform.forward * debugOffset;
 
         Vector3 position = MovingMap.transform.InverseTransformPoint(devicePosition);
@@ -34,9 +35,14 @@ public class DartHolder : MonoBehaviour
         positionAvg[positionAvg.Length - 1] = offset;
         lastPosition = position;
     }
+
     public void Update()
     {
         debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (Input.GetKey(KeyCode.E) ? 2f : -2f), 0f, 1f);
+        debugDartPosition = Vector3.forward * debugOffset;
+
+        dart.transform.localPosition = dartPosition + debugDartPosition;
+
         IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;
         if (device == null) return;
         bool down = device.GetButtonDown(VRButton.One);
@@ -56,6 +62,11 @@ public class DartHolder : MonoBehaviour
                 dart.Recall();
             }
         }
+    }
+
+    public Vector3 GetDartPosition()
+    {
+        return transform.TransformPoint(dartPosition + debugDartPosition);
     }
 
     [SerializeField]
