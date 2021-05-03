@@ -83,7 +83,7 @@ public class Dart : MonoBehaviour
         if (mode == Mode.Recall)
         {
             float speed = (float)timelineLimit / (float)timeline.Count;
-            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 0.05f * speed));
+            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 0.666f * speed));
             if (timePosition > 0f && timeline.Count > 0)
             {
                 float smoothTime = Mathf.Sqrt(timePosition);
@@ -111,11 +111,11 @@ public class Dart : MonoBehaviour
             if (timeInAir > 10f) inactive = true;
             if (!inactive)
             {
-                velocity += Vector3.down * 2f * Time.deltaTime;
+                velocity += Vector3.down * 4f * Time.deltaTime;
                 velocity *= 1f - drag * Mathf.Min(1f, Time.deltaTime);
             }
             RaycastHit hitInfo;
-            bool hit = Physics.Raycast(new Ray(transform.position, velocity.normalized), out hitInfo, velocity.magnitude * Time.deltaTime);
+            bool hit = Physics.Raycast(new Ray(transform.position, velocity.normalized), out hitInfo, velocity.magnitude * Time.deltaTime * 5f);
             if (hit)
             {
                 inactive = true;

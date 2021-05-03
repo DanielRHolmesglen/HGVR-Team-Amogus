@@ -41,7 +41,8 @@ public class DartHolder : MonoBehaviour
         debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (Input.GetKey(KeyCode.E) ? 2f : -2f), 0f, 1f);
         debugDartPosition = Vector3.forward * debugOffset;
 
-        dart.transform.localPosition = dartPosition + debugDartPosition;
+        if (dart.mode == Dart.Mode.Held)
+            dart.transform.localPosition = dartPosition + debugDartPosition;
 
         IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;
         if (device == null) return;
@@ -55,7 +56,7 @@ public class DartHolder : MonoBehaviour
                 if (force.sqrMagnitude > 0.1f)
                 {
                     force = force.normalized * Mathf.Max(1f, force.magnitude / 8f);
-                    dart.Throw(force * 2.0f);
+                    dart.Throw(force * 5.0f);
                 }
             } else if (dart.mode == Dart.Mode.Projectile)
             {
