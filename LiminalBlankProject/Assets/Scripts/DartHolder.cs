@@ -9,12 +9,14 @@ public class DartHolder : MonoBehaviour
 {
     [SerializeField]
     Dart dart;
+    [SerializeField]
+    GameObject controller;
 
     Vector3 dartPosition;
     Vector3 debugDartPosition;
 
     Vector3 lastPosition;
-    Vector3[] positionAvg = new Vector3[8];
+    Vector3[] positionAvg = new Vector3[3];
 
     float debugOffset;
     public void FixedUpdate()
@@ -38,7 +40,7 @@ public class DartHolder : MonoBehaviour
 
     public void Update()
     {
-        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (Input.GetKey(KeyCode.E) ? 2f : -2f), 0f, 1f);
+        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (Input.GetKey(KeyCode.E) ? 8f : -8f), 0f, 2f);
         debugDartPosition = Vector3.forward * debugOffset;
 
         if (dart.mode == Dart.Mode.Held)
@@ -53,9 +55,9 @@ public class DartHolder : MonoBehaviour
             {
                 Vector3 force = Vector3.zero;
                 foreach (Vector3 v in positionAvg) force += v;
-                if (force.sqrMagnitude > 0.01f)
+                if (force.magnitude > 0.1f)
                 {
-                    force = force.normalized * Mathf.Max(1f, force.magnitude / 8f);
+                    force = force.normalized * force.magnitude;
                     dart.Throw(force * 5.0f);
                 }
             } else if (dart.mode == Dart.Mode.Projectile)
@@ -70,10 +72,13 @@ public class DartHolder : MonoBehaviour
         return transform.TransformPoint(dartPosition + debugDartPosition);
     }
 
-    [SerializeField]
-    GameObject controller;
-    public void Start()
+    void Start()
     {
         controller?.SetActive(true);
+    }
+
+    void Awake()
+    {
+        dartPosition = new Vector3(0f, 0f, 0.175f);
     }
 }

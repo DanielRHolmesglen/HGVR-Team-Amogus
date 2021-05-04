@@ -14,7 +14,7 @@ public class Dart : MonoBehaviour
     DartHolder holder;
 
     float timeInAir = 0.0f;
-    float drag = 0.01f;
+    float drag = 0.02f;
     Vector3 velocity;
     bool inactive;
 
@@ -103,9 +103,8 @@ public class Dart : MonoBehaviour
                 Quaternion rotation = Quaternion.LerpUnclamped(a.rotation, b.rotation, fractal);
                 Vector3 position = Vector3.LerpUnclamped(a.position, b.position, fractal);
 
-                float lerpToHand = 1f - Mathf.Pow(1f - smoothTime, 1f);
                 Vector3 dartPosition = holder.GetDartPosition();
-                Vector3 newPosition = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), lerpToHand);
+                Vector3 newPosition = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), Mathf.Sqrt(smoothTime));
 
                 Vector3 forward = newPosition - transform.position;
                 if (forward.sqrMagnitude > 0)
@@ -134,16 +133,19 @@ public class Dart : MonoBehaviour
             Ray ray = new Ray(transform.position, velocity.normalized);
             RaycastHit hitInfo;
             bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * Time.deltaTime * 2f);
-            if (hit && !PopIfBalloon(hitInfo.transform))
-            {
-               inactive = true;
-            }
-            else if (!inactive)
+            if (!inactive)
             {
                 Vector3 newPosition = hit ? hitInfo.point : transform.position + velocity * Time.deltaTime;
                 transform.position = newPosition;
                 if (velocity.sqrMagnitude != 0f)
-                    transform.rotation = Quaternion.LookRotation(velocity, transform.up);
+                {
+                    transform.rotation = Quaternion.Lerp(transform.localRotation, Quaternion.LookRotation(velocity, transform.up), Mathf.Min(1f, velocity.magnitude));
+                    transform.Rotate(0f, 0f, Time.deltaTime * 360f, Space.Self);
+                }
+            }
+            if (hit && !PopIfBalloon(hitInfo.transform))
+            {
+               inactive = true;
             }
         } else if (mode == Mode.Held)
         {
