@@ -73,9 +73,17 @@ public class Dart : MonoBehaviour
     {
         transform.SetParent(holder.transform);
         transform.localPosition = initialTransform.position;
-        transform.localRotation = initialTransform.rotation;
         mode = Mode.Held;
         timeline.Clear();
+    }
+    static bool PopIfBalloon(Transform trans)
+    {
+        if (trans.name == "Balloon")
+        {
+            trans.GetComponent<BalloonPopper>()?.Pop();
+            return true;
+        }
+        return false;
     }
 
     public void Update()
@@ -83,10 +91,10 @@ public class Dart : MonoBehaviour
         if (mode == Mode.Recall)
         {
             float speed = (float)timelineLimit / (float)timeline.Count;
-            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 0.666f * speed));
+            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 0.25f * speed));
             if (timePosition > 0f && timeline.Count > 0)
             {
-                float smoothTime = Mathf.Sqrt(timePosition);
+                float smoothTime = Mathf.Sin(timePosition * .5f * Mathf.PI);
                 float timeI = Mathf.Min(1f, smoothTime) * timeline.Count;
                 float min = Mathf.Floor(timeI);
                 TimePoint a = timeline[(int)min];
@@ -95,10 +103,19 @@ public class Dart : MonoBehaviour
                 Quaternion rotation = Quaternion.LerpUnclamped(a.rotation, b.rotation, fractal);
                 Vector3 position = Vector3.LerpUnclamped(a.position, b.position, fractal);
 
-                float lerpToHand = 1f - Mathf.Pow(1f - smoothTime, 3f);
+                float lerpToHand = 1f - Mathf.Pow(1f - smoothTime, 1f);
                 Vector3 dartPosition = holder.GetDartPosition();
-                transform.position = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), lerpToHand);
-                transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(transform.position - dartPosition, holder.transform.up), rotation, lerpToHand);
+                Vector3 newPosition = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), lerpToHand);
+
+                Vector3 forward = newPosition - transform.position;
+                if (forward.sqrMagnitude > 0)
+                    transform.rotation = Quaternion.LookRotation(forward, transform.up);
+
+                Ray ray = new Ray(transform.position, transform.forward);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, Vector3.Distance(transform.position, newPosition) * 2f))
+                    PopIfBalloon(hitInfo.transform);
+
+                transform.position = newPosition;
             }
             else
             {
@@ -114,16 +131,23 @@ public class Dart : MonoBehaviour
                 velocity += Vector3.down * 4f * Time.deltaTime;
                 velocity *= 1f - drag * Mathf.Min(1f, Time.deltaTime);
             }
+            Ray ray = new Ray(transform.position, velocity.normalized);
             RaycastHit hitInfo;
-            bool hit = Physics.Raycast(new Ray(transform.position, velocity.normalized), out hitInfo, velocity.magnitude * Time.deltaTime * 5f);
-            if (hit)
+            bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * Time.deltaTime * 2f);
+            if (hit && !PopIfBalloon(hitInfo.transform))
             {
-                inactive = true;
+               inactive = true;
             }
-            Vector3 newPosition = hit ? hitInfo.point : transform.position + velocity * Time.deltaTime;
-            transform.position = newPosition;
-            if (velocity.sqrMagnitude != 0f)
-                transform.rotation = Quaternion.LookRotation(velocity, transform.up);
+            else if (!inactive)
+            {
+                Vector3 newPosition = hit ? hitInfo.point : transform.position + velocity * Time.deltaTime;
+                transform.position = newPosition;
+                if (velocity.sqrMagnitude != 0f)
+                    transform.rotation = Quaternion.LookRotation(velocity, transform.up);
+            }
+        } else if (mode == Mode.Held)
+        {
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * 6f);
         }
     }
 }

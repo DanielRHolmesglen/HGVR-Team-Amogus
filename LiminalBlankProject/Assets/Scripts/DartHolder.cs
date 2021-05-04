@@ -53,7 +53,7 @@ public class DartHolder : MonoBehaviour
             {
                 Vector3 force = Vector3.zero;
                 foreach (Vector3 v in positionAvg) force += v;
-                if (force.sqrMagnitude > 0.1f)
+                if (force.sqrMagnitude > 0.01f)
                 {
                     force = force.normalized * Mathf.Max(1f, force.magnitude / 8f);
                     dart.Throw(force * 5.0f);

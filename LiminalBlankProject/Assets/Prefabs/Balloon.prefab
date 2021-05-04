@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d26c4f457f85a468ce8e718d0d1dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collider: {fileID: 8296172667768940261}
   normalMesh: {fileID: 5139857968019640848}
   fragmentedMesh: {fileID: 827434410171346009}
   fragmentedTransform: {fileID: 7580682161342740042}

@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class BalloonPopper : MonoBehaviour
 {
     [SerializeField]
+    new Collider collider;
+    [SerializeField]
     MeshRenderer normalMesh;
     [SerializeField]
     SkinnedMeshRenderer fragmentedMesh;
@@ -31,6 +33,7 @@ public class BalloonPopper : MonoBehaviour
         this.enabled = true;
         fragmentedMesh.enabled = true;
         normalMesh.enabled = false;
+        collider.enabled = false;
         if (randomizeRotation)
             fragmentedTransform.rotation = Quaternion.AngleAxis(Random.value * 360f, Vector3.up);
 
@@ -45,6 +48,7 @@ public class BalloonPopper : MonoBehaviour
     {
         this.enabled = false;
         fragmentedMesh.enabled = false;
+        collider.enabled = true;
     }
 
     void Update()
@@ -57,6 +61,7 @@ public class BalloonPopper : MonoBehaviour
             fragmentedMesh.enabled = false;
             this.enabled = false;
             normalMesh.enabled = true;
+            collider.enabled = true;
             popEnded?.Invoke();
             return;
         }
