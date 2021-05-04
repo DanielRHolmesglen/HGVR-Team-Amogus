@@ -32,7 +32,6 @@ public class BalloonPopper : MonoBehaviour
         popping = 0f;
         this.enabled = true;
         fragmentedMesh.enabled = true;
-        normalMesh.enabled = false;
         collider.enabled = false;
         if (randomizeRotation)
             fragmentedTransform.rotation = Quaternion.AngleAxis(Random.value * 360f, Vector3.up);
@@ -70,6 +69,7 @@ public class BalloonPopper : MonoBehaviour
         float x = Mathf.Min(1.0f, popping);
         float v = 2.70158f * x * x * x - 1.70158f * x * x;
         fragmentedTransform.localScale = Vector3.one * (1f - v);
-        fragmentedMesh.SetBlendShapeWeight(0, Mathf.Sin(x * .5f * Mathf.PI) * 100f);
+        fragmentedMesh.SetBlendShapeWeight(0, Mathf.Sin(x * .5f * Mathf.PI) * 200f);
+        normalMesh.enabled = false;
     }
 }
