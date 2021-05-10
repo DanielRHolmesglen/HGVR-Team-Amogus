@@ -6,6 +6,8 @@ public class Balloon : MonoBehaviour
 {
     [SerializeField]
     BalloonPopper popper;
+
+    float lifetime = 0.0f;
     void Start()
     {
         this.name = "Balloon";
@@ -14,5 +16,11 @@ public class Balloon : MonoBehaviour
     public void OnPop()
     {
         Destroy(gameObject);
+    }
+
+    void Update()
+    {
+        lifetime += Time.deltaTime;
+        if (lifetime > 120f) Destroy(gameObject);
     }
 }
