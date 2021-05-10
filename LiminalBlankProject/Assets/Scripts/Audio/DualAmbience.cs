@@ -10,7 +10,9 @@ public class DualAmbience : MonoBehaviour
     AudioSource sourceB;
 
     [SerializeField]
-    float volumeMultiplier = 0.5f;
+    float volumeMultiplier = 0.05f;
+    [SerializeField]
+    float panSpeed = 0.1f;
 
     float volume = 0.0f;
     void Awake()
@@ -20,7 +22,7 @@ public class DualAmbience : MonoBehaviour
 
     void UpdateVolume()
     {
-        float pan = Mathf.Sin((float)(TimeKeeper.time % Mathf.PI));
+        float pan = Mathf.Sin((float)((TimeKeeper.time * (double)panSpeed) % Mathf.PI));
         sourceA.volume = pan * volume * volumeMultiplier;
         sourceB.volume = (1.0f - pan) * volume * volumeMultiplier;
     }
