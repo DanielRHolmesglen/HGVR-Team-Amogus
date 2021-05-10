@@ -29,7 +29,7 @@ public class DartHolder : MonoBehaviour
         if (deviceTransform == null) return;
         Vector3 devicePosition = deviceTransform.position;
 
-        devicePosition += deviceTransform.forward * debugOffset;
+        devicePosition += deviceTransform.forward * Mathf.Sqrt(debugOffset) * 2f;
 
         Vector3 position = MovingMap.transform.InverseTransformPoint(devicePosition);
         for (int i = 1; i != positionAvg.Length; ++i)
@@ -43,8 +43,8 @@ public class DartHolder : MonoBehaviour
 
     public void Update()
     {
-        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (Input.GetKey(KeyCode.E) ? 8f : -8f), 0f, 2f);
-        debugDartPosition = Vector3.forward * debugOffset;
+        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (Input.GetKey(KeyCode.E) ? 1.5f : -3f), 0f, 1f);
+        debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset) * 2f;
 
         if (dart.mode == Dart.Mode.Held)
             dart.transform.localPosition = dartPosition + debugDartPosition;
@@ -58,10 +58,10 @@ public class DartHolder : MonoBehaviour
             {
                 Vector3 force = Vector3.zero;
                 foreach (Vector3 v in positionAvg) force += v;
-                if (force.magnitude > 0.1f)
+                force /= positionAvg.Length;
+                if (force.magnitude > 0.01f && transform.InverseTransformVector(force.normalized).z > 0.25f)
                 {
-                    force = force.normalized * force.magnitude;
-                    dart.Throw(force * 5.0f);
+                    dart.Throw(force / Time.fixedDeltaTime);
                 }
             } else if (dart.mode == Dart.Mode.Projectile)
             {
