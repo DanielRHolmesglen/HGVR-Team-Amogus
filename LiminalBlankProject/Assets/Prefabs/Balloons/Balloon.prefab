@@ -103,6 +103,8 @@ GameObject:
   - component: {fileID: 2986739233441380763}
   - component: {fileID: 8296172667768940261}
   - component: {fileID: 8296172667768940263}
+  - component: {fileID: 2749532989703266299}
+  - component: {fileID: 536335378}
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -193,10 +195,21 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1003ae5e468390b4ca295fca6ee5ef13, type: 3}
   audioSource: {fileID: 8296172667768940263}
   randomizeRotation: 1
-  lifetimeAfterPop: 0.5
+  lifetimeAfterPop: 2
   popEnded:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 536335378}
+        m_MethodName: OnPop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!64 &8296172667768940261
@@ -309,3 +322,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2749532989703266299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874929112362231500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ecb578716a4acd46a5eaf0d1e775aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.5
+--- !u!114 &536335378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874929112362231500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6f2d15e3ad584448767caf75078341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popper: {fileID: 2986739233441380763}
