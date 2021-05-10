@@ -8,6 +8,9 @@ using Liminal.SDK.VR.Input;
 public class DartHolder : MonoBehaviour
 {
     [SerializeField]
+    string throwButton = VRButton.One;
+
+    [SerializeField]
     Dart dart;
     [SerializeField]
     GameObject controller;
