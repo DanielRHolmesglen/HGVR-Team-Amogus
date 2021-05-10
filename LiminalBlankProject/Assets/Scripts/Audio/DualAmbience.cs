@@ -22,7 +22,7 @@ public class DualAmbience : MonoBehaviour
 
     void UpdateVolume()
     {
-        float pan = Mathf.Sin((float)((TimeKeeper.time * (double)panSpeed) % Mathf.PI));
+        float pan = Mathf.Sin((float)((TimeKeeper.time * (double)panSpeed) % (double)Mathf.PI));
         sourceA.volume = pan * volume * volumeMultiplier;
         sourceB.volume = (1.0f - pan) * volume * volumeMultiplier;
     }

@@ -7,6 +7,8 @@ public class Dart : MonoBehaviour
     [SerializeField]
     new AudioSource audio;
     [SerializeField]
+    AudioSource recallSound;
+    [SerializeField]
     AudioClip[] hitSounds;
 
     public enum Mode { 
@@ -72,6 +74,8 @@ public class Dart : MonoBehaviour
     { 
         timePosition = 1.0f;
         mode = Mode.Recall;
+        recallSound.pitch = 0f;
+        recallSound.Play();
     }
 
     public void Hold()
@@ -79,6 +83,7 @@ public class Dart : MonoBehaviour
         transform.SetParent(holder.transform);
         transform.localPosition = initialTransform.position;
         mode = Mode.Held;
+        recallSound.Stop();
         timeline.Clear();
     }
     static bool PopIfBalloon(Transform trans)
@@ -95,8 +100,9 @@ public class Dart : MonoBehaviour
     {
         if (mode == Mode.Recall)
         {
-            float speed = (float)timelineLimit / (float)timeline.Count;
-            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 0.25f * speed));
+            float speed = ((float)timelineLimit / (float)timeline.Count) * 0.25f;
+            recallSound.pitch = speed;
+            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * speed));
             if (timePosition > 0f && timeline.Count > 0)
             {
                 float smoothTime = Mathf.Sin(timePosition * .5f * Mathf.PI);
