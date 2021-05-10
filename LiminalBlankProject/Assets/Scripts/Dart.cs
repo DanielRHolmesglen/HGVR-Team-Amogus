@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Dart : MonoBehaviour
 {
+    [SerializeField]
+    new AudioSource audio;
+    [SerializeField]
+    AudioClip[] hitSounds;
+
     public enum Mode { 
         Held,
         Projectile,
@@ -129,23 +134,21 @@ public class Dart : MonoBehaviour
             {
                 velocity += Vector3.down * 4f * Time.deltaTime;
                 velocity *= 1f - drag * Mathf.Min(1f, Time.deltaTime);
-            }
-            Ray ray = new Ray(transform.position, velocity.normalized);
-            RaycastHit hitInfo;
-            bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * Time.deltaTime * 2f);
-            if (!inactive)
-            {
+                Ray ray = new Ray(transform.position, velocity.normalized);
+                RaycastHit hitInfo;
+                bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * Time.deltaTime * 2f);
                 Vector3 newPosition = hit ? hitInfo.point : transform.position + velocity * Time.deltaTime;
                 transform.position = newPosition;
-                if (velocity.sqrMagnitude != 0f)
+                if (hit && !PopIfBalloon(hitInfo.transform))
+                {
+                    audio.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
+                    inactive = true;
+                }
+                else if (velocity.sqrMagnitude != 0f)
                 {
                     transform.rotation = Quaternion.Lerp(transform.localRotation, Quaternion.LookRotation(velocity, transform.up), Mathf.Min(1f, velocity.magnitude));
                     transform.Rotate(0f, 0f, Time.deltaTime * 360f, Space.Self);
                 }
-            }
-            if (hit && !PopIfBalloon(hitInfo.transform))
-            {
-               inactive = true;
             }
         } else if (mode == Mode.Held)
         {
