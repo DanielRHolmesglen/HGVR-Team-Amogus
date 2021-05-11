@@ -35,7 +35,7 @@ public class BalloonWaves : MonoBehaviour
     //Set objects as spawnpoints.
     public Transform[] spawnPoints;
     //The time that the player will have between waves to prepare and collect collectibles.
-    public float timeBewteenWaves = 5f;
+    public float timeBetweenWaves = 5f;
     //Countdown down between the waves.
     private float waveCountdown;
     //Time for 
@@ -45,7 +45,7 @@ public class BalloonWaves : MonoBehaviour
     //
     void Start()
     {
-        waveCountdown = timeBewteenWaves;
+        waveCountdown = timeBetweenWaves;
     }
 
     void Update()
@@ -85,7 +85,7 @@ public class BalloonWaves : MonoBehaviour
     void WaveCompleted()
     {
         state = SpawnState.COUNTING;
-        waveCountdown = timeBewteenWaves;
+        waveCountdown = timeBetweenWaves;
 
         //Counts down the waves.
         if (nextWave + 1 > waves.Length - 1)
