@@ -150,14 +150,18 @@ public class Dart : MonoBehaviour
             dartTrail.positionCount = 0;
             return;
         }
-        int segmentCount = Mathf.Clamp(Mathf.Min(timeline.Count, (int)(minTimePosition * timeline.Count)), 32, 256);
+        int segmentCount = Mathf.Clamp(Mathf.Min(timeline.Count, (int)(minTimePosition * timeline.Count)), 64, 256);
         Vector3[] segments = new Vector3[segmentCount];
 
         Vector3 dartPosition = holder.GetDartPosition();
+        Vector3 last = dartPosition;
         for (int i = 0; i != segmentCount; ++i) {
-            float index = (float)i / (float)(segmentCount - 1);
+            float index = 1f - Mathf.Sqrt(1f - ((float)i / (float)(segmentCount - 1)));
             TimePoint point = GetTimePoint(index * minTimePosition, dartPosition);
-            segments[i] = point.position + (point.rotation * endOffset * point.scale.z * index);
+            Vector3 position = point.position + (point.rotation * endOffset * point.scale.z * index);
+            segments[i] = position;
+            Debug.DrawLine(last, position, (i % 2 == 0 ? Color.red : Color.blue));
+            last = position;
         }
 
         dartTrail.positionCount = segmentCount;
@@ -240,9 +244,10 @@ public class Dart : MonoBehaviour
                 {
                     timeline[timeline.Count - 1] = MakeTimePoint();
                 }
-                UpdateTrail();
             }
-        } else if (mode == Mode.Held)
+            UpdateTrail();
+        }
+        else if (mode == Mode.Held)
         {
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * 6f);
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * 6f);

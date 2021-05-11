@@ -3016,58 +3016,6 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 1067985170923774264}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.key2.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.atime1
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.atime2
-      value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.m_NumAlphaKeys
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.ctime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.b
-      value: 0.11764706
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e62158df59803f241bd8a2e22fdfb23f, type: 2}
-    - target: {fileID: 351664286, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
-      propertyPath: m_Parameters.colorGradient.ctime1
-      value: 65535
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
 --- !u!4 &2409479398387395509 stripped
