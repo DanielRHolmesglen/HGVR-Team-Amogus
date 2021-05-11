@@ -31,4 +31,12 @@ public class GameSystem : MonoBehaviour
     {
         StartCoroutine("MusicIntro");
     }
+
+    void Update()
+    {
+        if (Application.isEditor)
+        {
+            Time.timeScale = Input.GetKey(KeyCode.L) ? 10f : 1f;
+        }
+    }
 }

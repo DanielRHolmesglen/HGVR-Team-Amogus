@@ -9,7 +9,7 @@ public class DartHolder : MonoBehaviour
 {
     [SerializeField]
     string throwButton = VRButton.One;
-    bool activatedFirstTime = false;
+    bool downFirstTime = false;
 
     [SerializeField]
     Dart dart;
@@ -53,24 +53,39 @@ public class DartHolder : MonoBehaviour
 
         IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;
         if (device == null) return;
-        bool activated = Application.isEditor ? device.GetButtonDown(throwButton) : device.GetButtonUp(throwButton);
-        if (!activatedFirstTime)
-            activatedFirstTime = device.GetButtonDown(throwButton);
-
-        if (activated && activatedFirstTime)
+        bool down = device.GetButtonDown(throwButton);
+        bool up = device.GetButtonUp(throwButton);
+        if (!downFirstTime && down)
+            downFirstTime = device.GetButtonDown(throwButton);
+        if (Application.isEditor)
         {
-            if (dart.mode == Dart.Mode.Held)
+            bool v = up;
+            up = down; down = v;
+        }
+
+        if (downFirstTime)
+        {
+            if (up)
             {
                 Vector3 force = Vector3.zero;
                 foreach (Vector3 v in positionAvg) force += v;
                 force /= positionAvg.Length;
-                if (force.magnitude > 0.01f && transform.InverseTransformVector(force.normalized).z > 0.25f)
+                bool forceValid = force.magnitude > 0.01f;
+                if (dart.mode == Dart.Mode.Held && forceValid && transform.InverseTransformVector(force.normalized).z > 0.25f)
                 {
                     dart.Throw(force / Time.fixedDeltaTime);
                 }
-            } else if (dart.mode == Dart.Mode.Projectile)
+                else if (dart.mode == Dart.Mode.Recall)
+                {
+                    dart.CancelRecall(forceValid ? force / Time.fixedDeltaTime : Vector3.zero);
+                }
+            }
+            else if (down)
             {
-                dart.Recall();
+                if (dart.mode == Dart.Mode.Projectile)
+                {
+                    dart.Recall();
+                }
             }
         }
     }

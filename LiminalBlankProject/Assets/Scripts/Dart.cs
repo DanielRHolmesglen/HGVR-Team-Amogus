@@ -7,7 +7,17 @@ public class Dart : MonoBehaviour
     [SerializeField]
     new AudioSource audio;
     [SerializeField]
-    AudioSource recallSound;
+    AudioSource reversedAudio;
+    [SerializeField]
+    AudioSource holderAudio;
+    [SerializeField]
+    AudioClip recallSound;
+    [SerializeField]
+    AudioClip recallCancelSound;
+    [SerializeField]
+    AudioClip[] grabSounds;
+    [SerializeField]
+    AudioClip[] throwSounds;
     [SerializeField]
     AudioClip[] hitSounds;
 
@@ -34,11 +44,13 @@ public class Dart : MonoBehaviour
         public Quaternion rotation;
         public Vector3 position;
         public Vector3 scale;
-        public TimePoint(Quaternion rotation, Vector3 position, Vector3 scale) : this()
+        public Vector3 velocity;
+        public TimePoint(Quaternion rotation, Vector3 position, Vector3 scale, Vector3 velocity) : this()
         {
             this.rotation = rotation;
             this.position = position;
             this.scale = scale;
+            this.velocity = velocity;
         }
     }
 
@@ -52,8 +64,8 @@ public class Dart : MonoBehaviour
     void Awake()
     {
         timeline = new List<TimePoint>();
-        initialTransform = new TimePoint(transform.localRotation, transform.localPosition, transform.localScale);
-        timelineLimit = (int)(10f / Time.fixedDeltaTime);
+        initialTransform = new TimePoint(transform.localRotation, transform.localPosition, transform.localScale, Vector3.zero);
+        timelineLimit = (int)(30f / Time.fixedDeltaTime);
     }
 
     void Start()
@@ -64,7 +76,7 @@ public class Dart : MonoBehaviour
 
     TimePoint MakeTimePoint()
     {
-        return new TimePoint(transform.rotation, MovingMap.transform.InverseTransformPoint(transform.position), transform.localScale);
+        return new TimePoint(transform.rotation, MovingMap.transform.InverseTransformPoint(transform.position), transform.localScale, velocity);
     }
 
     void AddTimePoint()
@@ -86,15 +98,38 @@ public class Dart : MonoBehaviour
         inactive = false;
         timeInAir = 0.0f;
         velocity = force;
+        audio.PlayOneShot(throwSounds[Random.Range(0, throwSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
         AddTimePoint();
+    }
+
+    public void CancelRecall(Vector3 newForce)
+    {
+        int max = timeline.Count;
+        if (max < 2 || inactive) return;
+        transform.SetParent(MovingMap.transform);
+        mode = Mode.Projectile;
+        Vector3 oldVelocity = GetTimePoint(timePosition).velocity;
+        velocity = newForce == Vector3.zero ? oldVelocity : newForce.normalized * oldVelocity.magnitude;
+        int start = (int)timePosition;
+        timeline.RemoveRange(start, timeline.Count - start);
+        float reversedTime = audio.isPlaying ? Mathf.Clamp(audio.clip.length - audio.time, 0f, 1f) : 0f;
+        audio.Stop();
+        reversedAudio.pitch = 2f;
+        Debug.Log(reversedTime);
+        reversedAudio.time = reversedTime;
+        reversedAudio.Play();
     }
 
     public void Recall()
     { 
         timePosition = 1.0f;
         mode = Mode.Recall;
-        recallSound.pitch = 0f;
-        recallSound.Play();
+        float reversedTime = reversedAudio.isPlaying ? Mathf.Clamp(reversedAudio.clip.length - reversedAudio.time, 0f, 1f) : 0f;
+        reversedAudio.Stop();
+        audio.pitch = 2f;
+        Debug.Log(reversedTime);
+        audio.time = reversedTime;
+        audio.Play();
     }
 
     public void Hold()
@@ -102,7 +137,9 @@ public class Dart : MonoBehaviour
         transform.SetParent(holder.transform);
         transform.localPosition = initialTransform.position;
         mode = Mode.Held;
-        recallSound.Stop();
+        audio.Stop();
+        audio.pitch = 1f;
+        audio.PlayOneShot(grabSounds[Random.Range(0, grabSounds.Length)]);
         timeline.Clear();
         UpdateTrail();
     }
@@ -124,7 +161,7 @@ public class Dart : MonoBehaviour
     
     public TimePoint GetTimePoint(float timePosition, Vector3 dartPosition)
     {
-        if (timeline.Count == 0) throw new System.Exception("Dart timeline is empty");
+        if (timeline.Count == 0) return new TimePoint();
         float fIndex = timePosition * (timeline.Count - 1);
         int min = (int)fIndex;
         TimePoint a = timeline[min];
@@ -135,7 +172,8 @@ public class Dart : MonoBehaviour
 
         Vector3 newPosition = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), Mathf.Sqrt(timePosition));
 
-        return new TimePoint(rotation, newPosition, Vector3.LerpUnclamped(a.scale, b.scale, fractal));
+        float magnitude = Mathf.Lerp(a.velocity.magnitude, b.velocity.magnitude, fractal);
+        return new TimePoint(rotation, newPosition, Vector3.LerpUnclamped(a.scale, b.scale, fractal), Vector3.LerpUnclamped(a.velocity, b.velocity, fractal).normalized * magnitude);
     }
 
     public TimePoint GetTimePoint(float timePosition)
@@ -193,16 +231,15 @@ public class Dart : MonoBehaviour
 
         if (mode == Mode.Recall)
         {
-            float speed = ((float)timelineLimit / (float)timeline.Count) * 0.25f;
-            recallSound.pitch = speed;
-            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * speed));
+            timeInAir = Mathf.Max(0f, timeInAir - Time.deltaTime);
+            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 2f));
             if (timePosition > 0f && timeline.Count > 0)
             {
                 TimePoint point = GetTimePoint(timePosition);
 
                 Vector3 forward = transform.position - point.position;
                 if (forward.sqrMagnitude > 0)
-                    transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(forward, transform.up), point.rotation, timePosition);
+                    transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(forward, transform.up), point.rotation, 1f - Mathf.Pow(1f - timePosition, 2));
 
                 Ray ray = new Ray(transform.position, transform.forward);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, Vector3.Distance(transform.position, point.position) * 2f))
@@ -219,7 +256,7 @@ public class Dart : MonoBehaviour
         else if (mode == Mode.Projectile)
         {
             timeInAir += Time.deltaTime;
-            if (timeInAir > 10f) inactive = true;
+            if (timeInAir > 30f) inactive = true;
             if (!inactive)
             {
                 velocity += Vector3.down * 4f * Time.deltaTime;
