@@ -44,10 +44,11 @@ public class DartHolder : MonoBehaviour
 
     public void Update()
     {
-        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (Input.GetKey(KeyCode.E) ? 1.5f : -3f), 0f, 1f);
-        debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset) * 2f;
+        bool held = dart.mode == Dart.Mode.Held;
+        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(KeyCode.E) ? 3f : -3f), 0f, 1f);
+        debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset) * 2.5f;
 
-        if (dart.mode == Dart.Mode.Held)
+        if (held)
             dart.transform.localPosition = dartPosition + debugDartPosition;
 
         IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;

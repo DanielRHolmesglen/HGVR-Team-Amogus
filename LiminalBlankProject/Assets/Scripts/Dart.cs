@@ -19,20 +19,26 @@ public class Dart : MonoBehaviour
     public Mode mode = Mode.Held;
     [SerializeField]
     DartHolder holder;
+    [SerializeField]
+    LineRenderer dartTrail;
 
     float timeInAir = 0.0f;
     float drag = 0.01f;
     Vector3 velocity;
     bool inactive;
 
-    struct TimePoint
+    private static readonly Vector3 endOffset = new Vector3(0f, 0f, -0.3651232f);
+
+    public struct TimePoint
     {
         public Quaternion rotation;
         public Vector3 position;
-        public TimePoint(Quaternion rotation, Vector3 position) : this()
+        public Vector3 scale;
+        public TimePoint(Quaternion rotation, Vector3 position, Vector3 scale) : this()
         {
             this.rotation = rotation;
             this.position = position;
+            this.scale = scale;
         }
     }
 
@@ -46,13 +52,24 @@ public class Dart : MonoBehaviour
     void Awake()
     {
         timeline = new List<TimePoint>();
-        initialTransform = new TimePoint(transform.localRotation, transform.localPosition);
+        initialTransform = new TimePoint(transform.localRotation, transform.localPosition, transform.localScale);
         timelineLimit = (int)(10f / Time.fixedDeltaTime);
+    }
+
+    void Start()
+    {
+        dartTrail.startWidth = 0.0025f;
+        dartTrail.endWidth = 0.005f;
+    }
+
+    TimePoint MakeTimePoint()
+    {
+        return new TimePoint(transform.rotation, MovingMap.transform.InverseTransformPoint(transform.position), transform.localScale);
     }
 
     void AddTimePoint()
     {
-        timeline.Add(new TimePoint(transform.rotation, MovingMap.transform.InverseTransformPoint(transform.position)));
+        timeline.Add(MakeTimePoint());
     }
 
     void FixedUpdate()
@@ -87,6 +104,7 @@ public class Dart : MonoBehaviour
         mode = Mode.Held;
         recallSound.Stop();
         timeline.Clear();
+        UpdateTrail();
     }
     static bool PopIfBalloon(Transform trans)
     {
@@ -103,6 +121,64 @@ public class Dart : MonoBehaviour
         Camera main = Camera.main;
         return 2f * Vector3.Distance(main.transform.position, transform.position) * Mathf.Tan(main.fieldOfView * 0.5f * Mathf.Deg2Rad);
     }
+    
+    public TimePoint GetTimePoint(float timePosition, Vector3 dartPosition)
+    {
+        if (timeline.Count == 0) throw new System.Exception("Dart timeline is empty");
+        float fIndex = timePosition * (timeline.Count - 1);
+        int min = (int)fIndex;
+        TimePoint a = timeline[min];
+        TimePoint b = timeline[Mathf.Min(timeline.Count - 1, min + 1)];
+        float fractal = fIndex - Mathf.Floor(fIndex);
+        Quaternion rotation = Quaternion.LerpUnclamped(a.rotation, b.rotation, fractal);
+        Vector3 position = Vector3.LerpUnclamped(a.position, b.position, fractal);
+
+        Vector3 newPosition = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), Mathf.Sqrt(timePosition));
+
+        return new TimePoint(rotation, newPosition, Vector3.LerpUnclamped(a.scale, b.scale, fractal));
+    }
+
+    public TimePoint GetTimePoint(float timePosition)
+    {
+        return GetTimePoint(timePosition, holder.GetDartPosition());
+    }
+
+    public void UpdateTrail(float minTimePosition = 1.0f)
+    {
+        if (timeline.Count == 0 || minTimePosition == 0.0f)
+        {
+            dartTrail.positionCount = 0;
+            return;
+        }
+        int segmentCount = Mathf.Clamp(Mathf.Min(timeline.Count, (int)(minTimePosition * timeline.Count)), 32, 256);
+        Vector3[] segments = new Vector3[segmentCount];
+
+        Vector3 dartPosition = holder.GetDartPosition();
+        for (int i = 0; i != segmentCount; ++i) {
+            float index = (float)i / (float)(segmentCount - 1);
+            TimePoint point = GetTimePoint(index * minTimePosition, dartPosition);
+            segments[i] = point.position + (point.rotation * endOffset * point.scale.z * index);
+        }
+
+        dartTrail.positionCount = segmentCount;
+        dartTrail.SetPositions(segments);
+        /*//
+        minTimePosition = Mathf.Min(timeline.Count, minTimePosition * timeline.Count);
+        int len = Mathf.CeilToInt(minTimePosition);
+        Vector3[] positions = new Vector3[len];
+        for (int i = 0; i != len; ++i)
+            positions[i] = timeline[i].position;
+
+        if (len >= 2)
+        {
+            float fractal = Mathf.FloorToInt(len) - minTimePosition;
+            positions[len - 1] = Vector3.Lerp(positions[len - 1], positions[len - 2], 1f - fractal);
+        }
+
+        dartTrail.positionCount = len;
+        dartTrail.SetPositions(positions);
+        //*/
+    }
 
     public void Update()
     {
@@ -118,27 +194,18 @@ public class Dart : MonoBehaviour
             timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * speed));
             if (timePosition > 0f && timeline.Count > 0)
             {
-                float smoothTime = Mathf.Sin(timePosition * .5f * Mathf.PI);
-                float timeI = Mathf.Min(1f, smoothTime) * timeline.Count;
-                float min = Mathf.Floor(timeI);
-                TimePoint a = timeline[(int)min];
-                TimePoint b = timeline[Mathf.Min(timeline.Count - 1, Mathf.CeilToInt(timeI))];
-                float fractal = timeI - min;
-                Quaternion rotation = Quaternion.LerpUnclamped(a.rotation, b.rotation, fractal);
-                Vector3 position = Vector3.LerpUnclamped(a.position, b.position, fractal);
+                TimePoint point = GetTimePoint(timePosition);
 
-                Vector3 dartPosition = holder.GetDartPosition();
-                Vector3 newPosition = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), Mathf.Sqrt(smoothTime));
-
-                Vector3 forward = transform.position - newPosition;
+                Vector3 forward = transform.position - point.position;
                 if (forward.sqrMagnitude > 0)
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(forward, transform.up), Time.deltaTime * 20f);
+                    transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(forward, transform.up), point.rotation, timePosition);
 
                 Ray ray = new Ray(transform.position, transform.forward);
-                if (Physics.Raycast(ray, out RaycastHit hitInfo, Vector3.Distance(transform.position, newPosition) * 2f))
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, Vector3.Distance(transform.position, point.position) * 2f))
                     PopIfBalloon(hitInfo.transform);
 
-                transform.position = newPosition;
+                transform.position = point.position;
+                UpdateTrail(timePosition);
             }
             else
             {
@@ -165,10 +232,15 @@ public class Dart : MonoBehaviour
                 }
                 else if (velocity.sqrMagnitude != 0f)
                 {
-                    float t = Mathf.Min(1f, velocity.magnitude) * Time.deltaTime * 30f;
-                    transform.rotation = Quaternion.Lerp(transform.localRotation, Quaternion.LookRotation(velocity, transform.up), t);
+                    float t = Mathf.Min(1f, velocity.magnitude) * Time.deltaTime * 50f;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity, transform.up), t);
                     transform.Rotate(0f, 0f, Time.deltaTime * 360f, Space.Self);
                 }
+                if (timeline.Count > 0)
+                {
+                    timeline[timeline.Count - 1] = MakeTimePoint();
+                }
+                UpdateTrail();
             }
         } else if (mode == Mode.Held)
         {
