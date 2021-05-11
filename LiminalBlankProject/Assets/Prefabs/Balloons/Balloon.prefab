@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 536335378}
   - component: {fileID: 1736641474}
   - component: {fileID: 426552610665720151}
-  - component: {fileID: 635580437744955273}
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -188,7 +187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 8296172667768940261}
   normalMesh: {fileID: 5139857968019640848}
-  normalLOD: {fileID: 635580437744955273}
   fragmentedMesh: {fileID: 827434410171346009}
   fragmentedTransform: {fileID: 7580682161342740042}
   popSoundPool:
@@ -366,26 +364,3 @@ ConstantForce:
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
---- !u!205 &635580437744955273
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6874929112362231500}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.000000059604645, y: 0.31787416, z: 0.00000017881393}
-  m_Size: 0.6642516
-  m_FadeMode: 0
-  m_AnimateCrossFading: 1
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.08582244
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 5139857968019640848}
-  - screenRelativeHeight: 0.0035125576
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 0}
-  m_Enabled: 1
