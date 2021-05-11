@@ -9,8 +9,8 @@ public class BalloonPopper : MonoBehaviour
     new Collider collider;
     [SerializeField]
     MeshRenderer normalMesh;
-    [SerializeField]
-    LODGroup normalLOD;
+    //[SerializeField]
+    //LODGroup normalLOD;
     [SerializeField]
     SkinnedMeshRenderer fragmentedMesh;
     [SerializeField]
@@ -76,6 +76,6 @@ public class BalloonPopper : MonoBehaviour
         fragmentedTransform.localScale = Vector3.one * (1f - v);
         fragmentedMesh.SetBlendShapeWeight(0, Mathf.Sin(x * .5f * Mathf.PI) * 200f);
         normalMesh.enabled = false;
-        normalLOD.enabled = false;
+        //normalLOD.enabled = false;
     }
 }
