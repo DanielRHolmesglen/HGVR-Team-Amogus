@@ -9,6 +9,8 @@ public class GameSystem : MonoBehaviour
     [SerializeField]
     AudioSource music;
 
+    [SerializeField]
+    Logo logo;
     IEnumerator MusicIntro()
     {
         yield return new WaitForSeconds(5f);
@@ -17,6 +19,7 @@ public class GameSystem : MonoBehaviour
             ambience.volume = Mathf.Max(0f, ambience.volume - (Time.deltaTime * 0.1f));
             yield return new WaitForEndOfFrame();
         }
+        logo.enabled = true;
         music.Play();
         while (music.volume != 0.25f)
         {

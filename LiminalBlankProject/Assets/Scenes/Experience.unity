@@ -255,6 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 135965311}
+  - component: {fileID: 135965312}
   m_Layer: 0
   m_Name: Logo
   m_TagString: Untagged
@@ -277,6 +278,19 @@ Transform:
   m_Father: {fileID: 30881054}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &135965312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135965310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4152164d9f4e4134aa36f3c03110335c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 5006512736899711287}
 --- !u!1 &179975241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,6 +1659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ambience: {fileID: 5277066}
   music: {fileID: 588538056}
+  logo: {fileID: 135965312}
 --- !u!1 &1829104978
 GameObject:
   m_ObjectHideFlags: 0
@@ -3777,7 +3792,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 4c4b14b5032749b46a941e1719d4e0c6, type: 3}
+  - {fileID: 2100000, guid: dc8927df90604ca448d1bd2bc5728ba0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3920,7 +3935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8296172667825305806
 GameObject:
   m_ObjectHideFlags: 0

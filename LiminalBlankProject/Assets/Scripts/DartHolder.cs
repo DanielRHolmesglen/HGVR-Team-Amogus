@@ -9,6 +9,7 @@ public class DartHolder : MonoBehaviour
 {
     [SerializeField]
     string throwButton = VRButton.One;
+    bool activatedFirstTime = false;
 
     [SerializeField]
     Dart dart;
@@ -51,8 +52,11 @@ public class DartHolder : MonoBehaviour
 
         IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;
         if (device == null) return;
-        bool down = device.GetButtonDown(VRButton.One);
-        if (down)
+        bool activated = Application.isEditor ? device.GetButtonDown(throwButton) : device.GetButtonUp(throwButton);
+        if (!activatedFirstTime)
+            activatedFirstTime = device.GetButtonDown(throwButton);
+
+        if (activated && activatedFirstTime)
         {
             if (dart.mode == Dart.Mode.Held)
             {
