@@ -45,8 +45,8 @@ public class DartHolder : MonoBehaviour
     public void Update()
     {
         bool held = dart.mode == Dart.Mode.Held;
-        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(KeyCode.E) ? 3f : -3f), 0f, 1f);
-        debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset) * 2.5f;
+        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(KeyCode.E) ? 4f : -3f), 0f, 1f);
+        debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset) * 2.6f;
 
         if (held)
             dart.transform.localPosition = dartPosition + debugDartPosition;
