@@ -20,25 +20,25 @@ public class DartHolder : MonoBehaviour
     Vector3 debugDartPosition;
 
     Vector3 lastPosition;
+    Vector3 lastRotVelocity;
     Quaternion lastRotation;
     Vector3[] velocityAvg = new Vector3[5];
 
     float debugOffset;
     public void FixedUpdate()
     {
-        Vector3 dartPosition = GetDartPosition();
 
         Quaternion rotation = transform.rotation;
-        Vector3 position = MovingMap.transform.InverseTransformPoint(dartPosition);
+        Vector3 rotVelocity = transform.TransformPoint(rotation * Quaternion.Inverse(lastRotation) * GetDartOffset());
+        Vector3 position = MovingMap.transform.InverseTransformPoint(GetDartPosition());
         for (int i = 1; i != velocityAvg.Length; ++i)
         {
             velocityAvg[i - 1] = velocityAvg[i];
         }
-        Vector3 offset = position - lastPosition;
-        Vector3 rotVelocity = (rotation * Quaternion.Inverse(lastRotation)) * offset;
-        Debug.DrawRay(dartPosition, rotVelocity);
-        velocityAvg[velocityAvg.Length - 1] = rotVelocity;
+        Vector3 offset = (position - lastPosition) + (rotVelocity - lastRotVelocity);
+        velocityAvg[velocityAvg.Length - 1] = offset;
         lastPosition = position;
+        lastRotVelocity = rotVelocity;
         lastRotation = rotation;
     }
 
@@ -90,14 +90,19 @@ public class DartHolder : MonoBehaviour
         }
     }
 
+    public Vector3 GetDartOffset()
+    {
+        return dartPosition + debugDartPosition;
+    }
+
     public Vector3 GetDartPosition()
     {
-        return transform.TransformPoint(dartPosition + debugDartPosition);
+        return transform.TransformPoint(GetDartOffset());
     }
 
     void Start()
     {
-        controller?.SetActive(true);
+        controller?.SetActive(false);
     }
 
     void Awake()
