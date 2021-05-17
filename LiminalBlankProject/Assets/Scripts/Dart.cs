@@ -224,10 +224,10 @@ public class Dart : MonoBehaviour
 
     public void Update()
     {
-        if (mode != Mode.Held)
-        {
-            transform.localScale = Vector3.one * Mathf.Lerp(1f, GetScaleFactor() / heldScaleFactor, 0.2f);
-        }
+        //if (mode != Mode.Held)
+        //{
+        //    transform.localScale = Vector3.one * Mathf.Lerp(1f, GetScaleFactor() / heldScaleFactor, 0.2f);
+        //}
 
         if (mode == Mode.Recall)
         {
@@ -288,7 +288,7 @@ public class Dart : MonoBehaviour
         {
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * 6f);
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * 6f);
-            heldScaleFactor = GetScaleFactor();
+            //heldScaleFactor = GetScaleFactor();
         }
     }
 }

@@ -20,33 +20,33 @@ public class DartHolder : MonoBehaviour
     Vector3 debugDartPosition;
 
     Vector3 lastPosition;
-    Vector3[] positionAvg = new Vector3[3];
+    Quaternion lastRotation;
+    Vector3[] velocityAvg = new Vector3[5];
 
     float debugOffset;
     public void FixedUpdate()
     {
-        IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;
-        Transform deviceTransform = device?.Pointer.Transform;
-        if (deviceTransform == null) return;
-        Vector3 devicePosition = deviceTransform.position;
+        Vector3 dartPosition = GetDartPosition();
 
-        devicePosition += deviceTransform.forward * Mathf.Sqrt(debugOffset) * 2f;
-
-        Vector3 position = MovingMap.transform.InverseTransformPoint(devicePosition);
-        for (int i = 1; i != positionAvg.Length; ++i)
+        Quaternion rotation = transform.rotation;
+        Vector3 position = MovingMap.transform.InverseTransformPoint(dartPosition);
+        for (int i = 1; i != velocityAvg.Length; ++i)
         {
-            positionAvg[i - 1] = positionAvg[i];
+            velocityAvg[i - 1] = velocityAvg[i];
         }
         Vector3 offset = position - lastPosition;
-        positionAvg[positionAvg.Length - 1] = offset;
+        Vector3 rotVelocity = (rotation * Quaternion.Inverse(lastRotation)) * offset;
+        Debug.DrawRay(dartPosition, rotVelocity);
+        velocityAvg[velocityAvg.Length - 1] = rotVelocity;
         lastPosition = position;
+        lastRotation = rotation;
     }
 
     public void Update()
     {
         bool held = dart.mode == Dart.Mode.Held;
-        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(KeyCode.E) ? 4f : -3f), 0f, 1f);
-        debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset) * 2.6f;
+        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(KeyCode.E) ? 3f : -3f), 0f, 1f);
+        debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset);
 
         if (held)
             dart.transform.localPosition = dartPosition + debugDartPosition;
@@ -68,10 +68,10 @@ public class DartHolder : MonoBehaviour
             if (up)
             {
                 Vector3 force = Vector3.zero;
-                foreach (Vector3 v in positionAvg) force += v;
-                force /= positionAvg.Length;
+                foreach (Vector3 v in velocityAvg) force += v;
+                force /= velocityAvg.Length;
                 bool forceValid = force.magnitude > 0.01f;
-                if (dart.mode == Dart.Mode.Held && forceValid && transform.InverseTransformVector(force.normalized).z > 0.25f)
+                if (dart.mode == Dart.Mode.Held && forceValid)
                 {
                     dart.Throw(force / Time.fixedDeltaTime);
                 }
@@ -102,6 +102,6 @@ public class DartHolder : MonoBehaviour
 
     void Awake()
     {
-        dartPosition = new Vector3(0f, 0f, 0.175f);
+        dartPosition = new Vector3(0f, 0.02f, 0.175f);
     }
 }
