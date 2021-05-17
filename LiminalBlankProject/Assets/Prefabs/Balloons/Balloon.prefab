@@ -103,8 +103,12 @@ GameObject:
   - component: {fileID: 2986739233441380763}
   - component: {fileID: 8296172667768940261}
   - component: {fileID: 8296172667768940263}
+<<<<<<< Updated upstream
   - component: {fileID: 2749532989703266299}
   - component: {fileID: 536335378}
+=======
+  - component: {fileID: -1079836312058483379}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -322,7 +326,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<< Updated upstream
 --- !u!114 &2749532989703266299
+=======
+--- !u!114 &-1079836312058483379
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ecb578716a4acd46a5eaf0d1e775aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   speed: 0.5
 --- !u!114 &536335378
 MonoBehaviour:
@@ -348,3 +357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popper: {fileID: 2986739233441380763}
+=======
+  speed: 1
+>>>>>>> Stashed changes
