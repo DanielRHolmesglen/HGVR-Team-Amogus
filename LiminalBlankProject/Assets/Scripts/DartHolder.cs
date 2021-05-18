@@ -70,6 +70,7 @@ public class DartHolder : MonoBehaviour
                 Vector3 force = Vector3.zero;
                 foreach (Vector3 v in velocityAvg) force += v;
                 force /= velocityAvg.Length;
+                force *= 1.75f;
                 bool forceValid = force.magnitude > 0.01f;
                 if (dart.mode == Dart.Mode.Held && forceValid)
                 {
