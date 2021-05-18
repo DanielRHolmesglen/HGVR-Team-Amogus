@@ -3741,8 +3741,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1290256332}
   - component: {fileID: 1290256334}
-  - component: {fileID: 1290256335}
   - component: {fileID: 1290256333}
+  - component: {fileID: 1290256335}
   m_Layer: 0
   m_Name: FogCone
   m_TagString: Untagged
@@ -3823,7 +3823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sphericalFogMaterial: {fileID: 2100000, guid: 7635611ced80d164cafbdf199d942808,
     type: 2}
-  scaleFactor: 2
+  scaleFactor: 1
 --- !u!1 &1299181964
 GameObject:
   m_ObjectHideFlags: 0
@@ -9873,8 +9873,8 @@ PrefabInstance:
       objectReference: {fileID: 1260162968814479104}
     - target: {fileID: 2409479398387395511, guid: 44713c0824737cc43895a7fcbb5c65e7,
         type: 3}
-      propertyPath: throwButton
-      value: ButtonTwo
+      propertyPath: useSecondaryDevice
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
@@ -10860,6 +10860,7 @@ GameObject:
   - component: {fileID: 1260162968675655302}
   - component: {fileID: 1260162968675655320}
   - component: {fileID: 389286678803827110}
+  - component: {fileID: 1260162968675655304}
   m_Layer: 0
   m_Name: CenterEye
   m_TagString: MainCamera
@@ -10867,6 +10868,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1260162968675655304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260162968675655303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9134f8e3614cf424bb286babf8e1af11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &1260162968675655320
 Camera:
   m_ObjectHideFlags: 0
@@ -11185,6 +11198,7 @@ GameObject:
   - component: {fileID: 1260162969437456595}
   - component: {fileID: 1260162969437456597}
   - component: {fileID: 1260162969437456594}
+  - component: {fileID: 1260162969437456593}
   m_Layer: 0
   m_Name: LeftEye
   m_TagString: MainCamera
@@ -11192,6 +11206,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1260162969437456593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260162969437456592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9134f8e3614cf424bb286babf8e1af11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1260162969437456594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11517,6 +11543,7 @@ GameObject:
   - component: {fileID: 1260162970336038744}
   - component: {fileID: 1260162970336038746}
   - component: {fileID: 1260162970336038747}
+  - component: {fileID: 1260162970336038748}
   m_Layer: 0
   m_Name: RightEye
   m_TagString: MainCamera
@@ -11585,6 +11612,18 @@ MonoBehaviour:
   m_StartColor: {r: 0, g: 0, b: 0, a: 1}
   m_CurrentColor: {r: 0, g: 0, b: 0, a: 0}
   CustomFaderMaterial: {fileID: 0}
+--- !u!114 &1260162970336038748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260162970336038745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9134f8e3614cf424bb286babf8e1af11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &2260981814505312884
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11739,6 +11778,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8413745578147700171, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
@@ -12387,7 +12431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe2fe0f0e415a34cafd9b75a7ca86b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: 0.6, y: 0.6, z: 0.6}
+  rotation: {x: 0.1, y: 0.1, z: 0.1}
 --- !u!1 &8296172667639608100
 GameObject:
   m_ObjectHideFlags: 0

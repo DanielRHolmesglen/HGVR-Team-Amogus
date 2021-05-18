@@ -26,6 +26,8 @@ public class BalloonPopper : MonoBehaviour
     [SerializeField]
     float lifetimeAfterPop = 0.5f;
     [SerializeField]
+    UnityEvent popped;
+    [SerializeField]
     UnityEvent popEnded;
 
     float popping = 0.0f;
@@ -43,6 +45,7 @@ public class BalloonPopper : MonoBehaviour
             audioSource.pitch = Random.Range(1.1f, 1.3f);
             audioSource.PlayOneShot(popSoundPool[Random.Range(0, popSoundPool.Length)]);
         }
+        popped?.Invoke();
     }
 
     void Awake()

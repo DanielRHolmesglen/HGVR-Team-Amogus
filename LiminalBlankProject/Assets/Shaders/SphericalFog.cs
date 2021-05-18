@@ -13,13 +13,12 @@ public class SphericalFog : MonoBehaviour
 		sphericalFogObject = gameObject.GetComponent<MeshRenderer>();
 		if (sphericalFogObject == null)
 			Debug.LogError("Volume Fog Object must have a MeshRenderer Component!");
-		
-		//Note: In forward lightning path, the depth texture is not automatically generated.
-		if (Camera.main.depthTextureMode == DepthTextureMode.None)
-			Camera.main.depthTextureMode = DepthTextureMode.Depth;
-		
+
+		Camera cam = Camera.main;
+        if (cam && cam.depthTextureMode == DepthTextureMode.None)
+            cam.depthTextureMode = DepthTextureMode.Depth;
+
 		sphericalFogObject.material = sphericalFogMaterial;
-		
 	}
 
 	void Update()
