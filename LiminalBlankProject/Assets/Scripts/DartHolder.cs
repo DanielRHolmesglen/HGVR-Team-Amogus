@@ -8,6 +8,8 @@ using Liminal.SDK.VR.Input;
 public class DartHolder : MonoBehaviour
 {
     [SerializeField]
+    bool useSecondaryDevice = false;
+    [SerializeField]
     string throwButton = VRButton.One;
     bool downFirstTime = false;
 
@@ -51,7 +53,7 @@ public class DartHolder : MonoBehaviour
         if (held)
             dart.transform.localPosition = dartPosition + debugDartPosition;
 
-        IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;
+        IVRInputDevice device = useSecondaryDevice ? VRDevice.Device.SecondaryInputDevice : VRDevice.Device.PrimaryInputDevice;
         if (device == null) return;
         bool down = device.GetButtonDown(throwButton);
         bool up = device.GetButtonUp(throwButton);

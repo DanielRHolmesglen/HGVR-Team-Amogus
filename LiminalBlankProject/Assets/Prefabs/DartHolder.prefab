@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44422b43c9bc65744ba57b0f451d98e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useSecondaryDevice: 0
   throwButton: ButtonOne
   dart: {fileID: 5022384271083550065}
   controller: {fileID: 0}
@@ -341,7 +342,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 16
     alignment: 0
     textureMode: 0
     shadowBias: 0.5

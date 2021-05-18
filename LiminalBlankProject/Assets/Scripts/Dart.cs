@@ -109,7 +109,7 @@ public class Dart : MonoBehaviour
         transform.SetParent(MovingMap.transform);
         mode = Mode.Projectile;
         Vector3 oldVelocity = GetTimePoint(timePosition).velocity;
-        velocity = newForce == Vector3.zero ? oldVelocity : newForce.normalized * oldVelocity.magnitude;
+        velocity = newForce == Vector3.zero ? oldVelocity : Vector3.Lerp(newForce.normalized, oldVelocity.normalized, 0.333333f) * oldVelocity.magnitude;
         int start = (int)timePosition;
         timeline.RemoveRange(start, timeline.Count - start);
         float reversedTime = audio.isPlaying ? Mathf.Clamp(audio.clip.length - audio.time, 0f, 1f) : 0f;
@@ -134,6 +134,7 @@ public class Dart : MonoBehaviour
 
     public void Hold()
     {
+        dartTrail.endWidth = 0.005f;
         transform.SetParent(holder.transform);
         transform.localPosition = initialTransform.position;
         mode = Mode.Held;
@@ -224,10 +225,11 @@ public class Dart : MonoBehaviour
 
     public void Update()
     {
-        //if (mode != Mode.Held)
-        //{
-        //    transform.localScale = Vector3.one * Mathf.Lerp(1f, GetScaleFactor() / heldScaleFactor, 0.2f);
-        //}
+        if (mode != Mode.Held)
+        {
+            //    transform.localScale = Vector3.one * Mathf.Lerp(1f, GetScaleFactor() / heldScaleFactor, 0.2f);
+            dartTrail.endWidth = 0.005f * Vector3.Distance(transform.position, holder.GetDartPosition());
+        }
 
         if (mode == Mode.Recall)
         {
