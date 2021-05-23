@@ -22,6 +22,7 @@ public class CountDown : MonoBehaviour
     //A float for the seconds 
     private float seconds;
 
+    public Animator timeUp;
     //Bool to trigger the event on and off
     public bool useEventTimer;
     //Event for the timer
@@ -46,9 +47,10 @@ public class CountDown : MonoBehaviour
             //Triggers an event once the time is up
             if(minutes<=0 && seconds <=0)
             {
-                totalTime = startingTime;
-                Debug.Log("Time up");
-                TimerEvent.Invoke();
+                timeUp.SetBool("TimeUp", true);
+                totalTime = 0;                
+                TimerEvent.Invoke(); // Used to trigger end of game event.
+
             }
         }
 
