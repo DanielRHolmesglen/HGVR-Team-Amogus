@@ -115,7 +115,6 @@ public class Dart : MonoBehaviour
         float reversedTime = audio.isPlaying ? Mathf.Clamp(audio.clip.length - audio.time, 0f, 1f) : 0f;
         audio.Stop();
         reversedAudio.pitch = 2f;
-        Debug.Log(reversedTime);
         reversedAudio.time = reversedTime;
         reversedAudio.Play();
     }
@@ -127,7 +126,6 @@ public class Dart : MonoBehaviour
         float reversedTime = reversedAudio.isPlaying ? Mathf.Clamp(reversedAudio.clip.length - reversedAudio.time, 0f, 1f) : 0f;
         reversedAudio.Stop();
         audio.pitch = 2f;
-        Debug.Log(reversedTime);
         audio.time = reversedTime;
         audio.Play();
     }

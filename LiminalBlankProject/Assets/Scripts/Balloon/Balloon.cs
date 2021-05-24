@@ -30,6 +30,6 @@ public class Balloon : MonoBehaviour
     void Update()
     {
         lifetime += Time.deltaTime;
-        if (lifetime > 120f) Destroy(gameObject);
+        if (lifetime > 40f) Destroy(gameObject);
     }
 }

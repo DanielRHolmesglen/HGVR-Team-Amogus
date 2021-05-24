@@ -9,20 +9,20 @@ public class DartInput : MonoBehaviour
 {
     [SerializeField]
     string button = VRButton.One;
-    [SerializeField]
-    bool useSecondaryDevice = false;
+
+    public bool useSecondaryDevice = false;
 
     IVRInputDevice GetDevice()
     {
         return useSecondaryDevice ? VRDevice.Device.SecondaryInputDevice : VRDevice.Device.PrimaryInputDevice;
     }
 
-    public bool GetButtonDown()
+    public virtual bool GetButtonDown()
     {
         return GetDevice()?.GetButtonDown(button) ?? false;
     }
 
-    public bool GetButtonUp()
+    public virtual bool GetButtonUp()
     {
         return GetDevice()?.GetButtonUp(button) ?? false;
     }

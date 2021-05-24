@@ -19,7 +19,7 @@ public class DartHolder : MonoBehaviour
     Vector3 lastPosition;
     Vector3 lastRotVelocity;
     Quaternion lastRotation;
-    Vector3[] velocityAvg = new Vector3[5];
+    Vector3[] velocityAvg = new Vector3[3];
 
     float debugOffset;
     public void FixedUpdate()
@@ -42,7 +42,7 @@ public class DartHolder : MonoBehaviour
     public void Update()
     {
         bool held = dart.mode == Dart.Mode.Held;
-        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(KeyCode.E) ? 3f : -3f), 0f, 1f);
+        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(input.useSecondaryDevice ? KeyCode.R : KeyCode.E) ? 3f : -3f), 0f, 1f);
         debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset);
 
         if (held)
