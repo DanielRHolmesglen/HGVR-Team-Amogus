@@ -53,7 +53,7 @@ public class DartHolder : MonoBehaviour
         bool up = input.GetButtonUp();
         if (!downFirstTime && down)
             downFirstTime = input.GetButtonDown();
-        if (Application.isEditor)
+        if (input is DartInputDesktop)
         {
             bool v = up;
             up = down; down = v;

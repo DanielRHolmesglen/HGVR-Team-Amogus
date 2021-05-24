@@ -19,6 +19,7 @@ public class DesktopAvatar : MonoBehaviour
     void Update()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         pitch = Mathf.Clamp(pitch - Input.GetAxis("Mouse Y"), -89.99f, 89.99f);
         transform.Rotate(Vector3.up, Input.GetAxis("Mouse X"));
 
