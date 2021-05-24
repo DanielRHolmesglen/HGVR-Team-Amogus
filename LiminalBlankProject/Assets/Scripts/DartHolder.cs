@@ -1,16 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Liminal.SDK.Core;
-using Liminal.SDK.VR;
-using Liminal.SDK.VR.Input;
 
 public class DartHolder : MonoBehaviour
 {
     [SerializeField]
-    bool useSecondaryDevice = false;
-    [SerializeField]
-    string throwButton = VRButton.One;
+    DartInput input;
     bool downFirstTime = false;
 
     [SerializeField]
@@ -53,12 +48,11 @@ public class DartHolder : MonoBehaviour
         if (held)
             dart.transform.localPosition = dartPosition + debugDartPosition;
 
-        IVRInputDevice device = useSecondaryDevice ? VRDevice.Device.SecondaryInputDevice : VRDevice.Device.PrimaryInputDevice;
-        if (device == null) return;
-        bool down = device.GetButtonDown(throwButton);
-        bool up = device.GetButtonUp(throwButton);
+        
+        bool down = input.GetButtonDown();
+        bool up = input.GetButtonUp();
         if (!downFirstTime && down)
-            downFirstTime = device.GetButtonDown(throwButton);
+            downFirstTime = input.GetButtonDown();
         if (Application.isEditor)
         {
             bool v = up;

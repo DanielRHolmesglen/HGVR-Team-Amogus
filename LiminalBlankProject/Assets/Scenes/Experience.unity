@@ -14929,6 +14929,11 @@ PrefabInstance:
       propertyPath: useSecondaryDevice
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3386326368459453023, guid: 44713c0824737cc43895a7fcbb5c65e7,
+        type: 3}
+      propertyPath: useSecondaryDevice
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44713c0824737cc43895a7fcbb5c65e7, type: 3}
 --- !u!1001 &1856643432

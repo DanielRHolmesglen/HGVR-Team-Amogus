@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1933470435144330922}
   - component: {fileID: 2409479398387395511}
+  - component: {fileID: 3386326368459453023}
   - component: {fileID: 5593990441907676936}
   m_Layer: 0
   m_Name: DartHolder
@@ -46,9 +47,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useSecondaryDevice: 0
-  throwButton: ButtonOne
+  input: {fileID: 3386326368459453023}
   dart: {fileID: 5022384271083550065}
   controller: {fileID: 0}
+--- !u!114 &3386326368459453023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680042585333601479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36d460da4e422c419ace64183741eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: ButtonOne
+  useSecondaryDevice: 0
 --- !u!82 &5593990441907676936
 AudioSource:
   m_ObjectHideFlags: 0
