@@ -9,6 +9,8 @@ public class BalloonPopper : MonoBehaviour
     new Collider collider;
     [SerializeField]
     MeshRenderer normalMesh;
+    //[SerializeField]
+    //LODGroup normalLOD;
     [SerializeField]
     SkinnedMeshRenderer fragmentedMesh;
     [SerializeField]
@@ -23,6 +25,8 @@ public class BalloonPopper : MonoBehaviour
     bool randomizeRotation = true;
     [SerializeField]
     float lifetimeAfterPop = 0.5f;
+    [SerializeField]
+    UnityEvent popped;
     [SerializeField]
     UnityEvent popEnded;
 
@@ -41,6 +45,7 @@ public class BalloonPopper : MonoBehaviour
             audioSource.pitch = Random.Range(1.1f, 1.3f);
             audioSource.PlayOneShot(popSoundPool[Random.Range(0, popSoundPool.Length)]);
         }
+        popped?.Invoke();
     }
 
     void Awake()
@@ -54,14 +59,17 @@ public class BalloonPopper : MonoBehaviour
     {
         if (popping == 1.0f + lifetimeAfterPop)
         {
+            popEnded?.Invoke();
+            /*//
             popping = 0f;
             fragmentedTransform.localScale = Vector3.zero;
             fragmentedMesh.SetBlendShapeWeight(0, 0f);
             fragmentedMesh.enabled = false;
             this.enabled = false;
             normalMesh.enabled = true;
+            normalLOD.enabled = true;
             collider.enabled = true;
-            popEnded?.Invoke();
+            //*/
             return;
         }
         popping = Mathf.Min(1.0f + lifetimeAfterPop, popping + Time.deltaTime * 3.5f);
@@ -71,5 +79,6 @@ public class BalloonPopper : MonoBehaviour
         fragmentedTransform.localScale = Vector3.one * (1f - v);
         fragmentedMesh.SetBlendShapeWeight(0, Mathf.Sin(x * .5f * Mathf.PI) * 200f);
         normalMesh.enabled = false;
+        //normalLOD.enabled = false;
     }
 }

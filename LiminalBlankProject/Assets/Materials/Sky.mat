@@ -89,7 +89,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Exponent: 1
+    - _Exponent: 2
     - _Exposure: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -124,8 +124,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0.19045925, g: 0.20315963, b: 0.3773585, a: 0}
-    - _Color2: {r: 0.092604965, g: 0.08201318, b: 0.1792453, a: 0}
+    - _Color1: {r: 0.11725702, g: 0.12699012, b: 0.2924528, a: 0}
+    - _Color2: {r: 0.08022616, g: 0.06968672, b: 0.16981131, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GroundColor: {r: 1, g: 1, b: 1, a: 1}
     - _SkyColor1: {r: 0.060074773, g: 0.15458368, b: 0.2830189, a: 0}

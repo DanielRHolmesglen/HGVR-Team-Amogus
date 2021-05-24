@@ -8,7 +8,10 @@ using Liminal.SDK.VR.Input;
 public class DartHolder : MonoBehaviour
 {
     [SerializeField]
+    bool useSecondaryDevice = false;
+    [SerializeField]
     string throwButton = VRButton.One;
+    bool downFirstTime = false;
 
     [SerializeField]
     Dart dart;
@@ -19,69 +22,94 @@ public class DartHolder : MonoBehaviour
     Vector3 debugDartPosition;
 
     Vector3 lastPosition;
-    Vector3[] positionAvg = new Vector3[3];
+    Vector3 lastRotVelocity;
+    Quaternion lastRotation;
+    Vector3[] velocityAvg = new Vector3[5];
 
     float debugOffset;
     public void FixedUpdate()
     {
-        IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;
-        Transform deviceTransform = device?.Pointer.Transform;
-        if (deviceTransform == null) return;
-        Vector3 devicePosition = deviceTransform.position;
 
-        devicePosition += deviceTransform.forward * debugOffset;
-
-        Vector3 position = MovingMap.transform.InverseTransformPoint(devicePosition);
-        for (int i = 1; i != positionAvg.Length; ++i)
+        Quaternion rotation = transform.rotation;
+        Vector3 rotVelocity = transform.TransformPoint(rotation * Quaternion.Inverse(lastRotation) * GetDartOffset());
+        Vector3 position = MovingMap.transform.InverseTransformPoint(GetDartPosition());
+        for (int i = 1; i != velocityAvg.Length; ++i)
         {
-            positionAvg[i - 1] = positionAvg[i];
+            velocityAvg[i - 1] = velocityAvg[i];
         }
-        Vector3 offset = position - lastPosition;
-        positionAvg[positionAvg.Length - 1] = offset;
+        Vector3 offset = (position - lastPosition) + (rotVelocity - lastRotVelocity);
+        velocityAvg[velocityAvg.Length - 1] = offset;
         lastPosition = position;
+        lastRotVelocity = rotVelocity;
+        lastRotation = rotation;
     }
 
     public void Update()
     {
-        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (Input.GetKey(KeyCode.E) ? 8f : -8f), 0f, 2f);
-        debugDartPosition = Vector3.forward * debugOffset;
+        bool held = dart.mode == Dart.Mode.Held;
+        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(KeyCode.E) ? 3f : -3f), 0f, 1f);
+        debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset);
 
-        if (dart.mode == Dart.Mode.Held)
+        if (held)
             dart.transform.localPosition = dartPosition + debugDartPosition;
 
-        IVRInputDevice device = VRDevice.Device.PrimaryInputDevice;
+        IVRInputDevice device = useSecondaryDevice ? VRDevice.Device.SecondaryInputDevice : VRDevice.Device.PrimaryInputDevice;
         if (device == null) return;
-        bool down = device.GetButtonDown(VRButton.One);
-        if (down)
+        bool down = device.GetButtonDown(throwButton);
+        bool up = device.GetButtonUp(throwButton);
+        if (!downFirstTime && down)
+            downFirstTime = device.GetButtonDown(throwButton);
+        if (Application.isEditor)
         {
-            if (dart.mode == Dart.Mode.Held)
+            bool v = up;
+            up = down; down = v;
+        }
+
+        if (downFirstTime)
+        {
+            if (up)
             {
                 Vector3 force = Vector3.zero;
-                foreach (Vector3 v in positionAvg) force += v;
-                if (force.magnitude > 0.1f)
+                foreach (Vector3 v in velocityAvg) force += v;
+                force /= velocityAvg.Length;
+                force *= 1.75f;
+                bool forceValid = force.magnitude > 0.01f;
+                if (dart.mode == Dart.Mode.Held && forceValid)
                 {
-                    force = force.normalized * force.magnitude;
-                    dart.Throw(force * 5.0f);
+                    dart.Throw(force / Time.fixedDeltaTime);
                 }
-            } else if (dart.mode == Dart.Mode.Projectile)
+                else if (dart.mode == Dart.Mode.Recall)
+                {
+                    dart.CancelRecall(forceValid ? force / Time.fixedDeltaTime : Vector3.zero);
+                }
+            }
+            else if (down)
             {
-                dart.Recall();
+                if (dart.mode == Dart.Mode.Projectile)
+                {
+                    dart.Recall();
+                }
             }
         }
     }
 
+    public Vector3 GetDartOffset()
+    {
+        return dartPosition + debugDartPosition;
+    }
+
     public Vector3 GetDartPosition()
     {
-        return transform.TransformPoint(dartPosition + debugDartPosition);
+        return transform.TransformPoint(GetDartOffset());
     }
 
     void Start()
     {
-        controller?.SetActive(true);
+        controller?.SetActive(false);
     }
 
     void Awake()
     {
-        dartPosition = new Vector3(0f, 0f, 0.175f);
+        dartPosition = new Vector3(0f, 0.02f, 0.175f);
     }
 }
