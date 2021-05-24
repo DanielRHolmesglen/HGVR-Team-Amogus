@@ -99,7 +99,8 @@ public class DartHolder : MonoBehaviour
 
     void Start()
     {
-        controller?.SetActive(false);
+        if (controller)
+            controller.SetActive(false);
     }
 
     void Awake()
