@@ -15,11 +15,11 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.11372549, g: 0.1254902, b: 0.28627452, a: 1}
-  m_FogMode: 1
-  m_FogDensity: 0.01
-  m_LinearFogStart: 10
-  m_LinearFogEnd: 300
+  m_FogColor: {r: 0.10980392, g: 0.11372549, b: 0.27058825, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.0059
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 200
   m_AmbientSkyColor: {r: 0.7004242, g: 0.7235151, b: 0.76199996, a: 1}
   m_AmbientEquatorColor: {r: 0.30034885, g: 0.3076744, b: 0.315, a: 1}
   m_AmbientGroundColor: {r: 0.196, g: 0.196, b: 0.203, a: 1}
@@ -315,6 +315,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -390,6 +395,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -464,6 +474,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -543,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -708,6 +723,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -786,7 +806,7 @@ PrefabInstance:
     - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -921,7 +941,7 @@ Transform:
   m_GameObject: {fileID: 285121398}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 44.5, z: -533}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 969234549}
   m_RootOrder: 0
@@ -5677,6 +5697,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5751,6 +5776,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -5827,6 +5857,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5902,6 +5937,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5976,6 +6016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -6094,6 +6139,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -6454,6 +6504,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6532,7 +6587,7 @@ PrefabInstance:
     - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -6735,6 +6790,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -6979,6 +7039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7140,6 +7205,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7214,6 +7284,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -7290,6 +7365,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7364,6 +7444,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -7440,6 +7525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7515,6 +7605,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7589,6 +7684,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -7792,6 +7892,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7870,7 +7975,7 @@ PrefabInstance:
     - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -7989,6 +8094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -8247,6 +8357,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8365,6 +8480,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8440,6 +8560,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8514,14 +8639,13 @@ GameObject:
   - component: {fileID: 1290256332}
   - component: {fileID: 1290256334}
   - component: {fileID: 1290256333}
-  - component: {fileID: 1290256335}
   m_Layer: 0
   m_Name: FogCone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1290256332
 Transform:
   m_ObjectHideFlags: 0
@@ -8581,21 +8705,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1290256335
+--- !u!1 &1296999190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6874929112362231500, guid: b998ceb7084c19546a67b1d395e55213,
+    type: 3}
+  m_PrefabInstance: {fileID: 3191163777600684072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1296999197 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5139857968019640848, guid: b998ceb7084c19546a67b1d395e55213,
+    type: 3}
+  m_PrefabInstance: {fileID: 3191163777600684072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1296999199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1290256331}
+  m_GameObject: {fileID: 1296999190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ad96401c37f76547b1855f574f4264a, type: 3}
+  m_Script: {fileID: 11500000, guid: 808c162e0af534e408ec61fccbaa6c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sphericalFogMaterial: {fileID: 2100000, guid: 7635611ced80d164cafbdf199d942808,
-    type: 2}
-  scaleFactor: 1
+  mesh: {fileID: 1296999197}
+  poppedMesh: {fileID: 1599321566}
 --- !u!1 &1299181964
 GameObject:
   m_ObjectHideFlags: 0
@@ -13361,7 +13496,7 @@ Transform:
   m_GameObject: {fileID: 1299181964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 29, z: -533}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 969234549}
   m_RootOrder: 1
@@ -13377,6 +13512,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -13453,6 +13593,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13527,6 +13672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -13646,6 +13796,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13720,6 +13875,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -13842,7 +14002,7 @@ PrefabInstance:
     - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -13907,6 +14067,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1565204353}
   m_PrefabAsset: {fileID: 0}
+--- !u!137 &1599321566 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 827434410171346009, guid: b998ceb7084c19546a67b1d395e55213,
+    type: 3}
+  m_PrefabInstance: {fileID: 3191163777600684072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1648651344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13918,6 +14084,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -13993,6 +14164,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -14111,6 +14287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -14362,6 +14543,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14440,7 +14626,7 @@ PrefabInstance:
     - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -14516,6 +14702,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -14674,7 +14865,7 @@ PrefabInstance:
     - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -14751,6 +14942,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14825,6 +15021,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -14965,7 +15166,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1927110430}
-  m_Mesh: {fileID: 8622889685429169044, guid: 89fc111691c9a264bab9cf21215f9fb3, type: 3}
+  m_Mesh: {fileID: -8587385380669653382, guid: 89fc111691c9a264bab9cf21215f9fb3, type: 3}
 --- !u!1001 &1940906521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14977,6 +15178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -15096,6 +15302,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanPlane (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15201,6 +15412,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -15311,6 +15527,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
@@ -15486,8 +15707,8 @@ MonoBehaviour:
   m_Singleton: 0
   m_DefaultDuration: 2
   m_FadeOnStart: 1
-  m_StartColor: {r: 0, g: 0, b: 0, a: 1}
-  m_CurrentColor: {r: 0, g: 0, b: 0, a: 0}
+  m_StartColor: {r: 0.105882354, g: 0.10980392, b: 0.25490198, a: 1}
+  m_CurrentColor: {r: 0.105882354, g: 0.10980392, b: 0.25490198, a: 0}
   CustomFaderMaterial: {fileID: 0}
 --- !u!95 &914683197314204984
 Animator:
@@ -15641,7 +15862,6 @@ GameObject:
   - component: {fileID: 1260162968675655302}
   - component: {fileID: 1260162968675655320}
   - component: {fileID: 389286678803827110}
-  - component: {fileID: 1260162968675655304}
   m_Layer: 0
   m_Name: CenterEye
   m_TagString: MainCamera
@@ -15649,18 +15869,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1260162968675655304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260162968675655303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9134f8e3614cf424bb286babf8e1af11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &1260162968675655320
 Camera:
   m_ObjectHideFlags: 0
@@ -15979,7 +16187,6 @@ GameObject:
   - component: {fileID: 1260162969437456595}
   - component: {fileID: 1260162969437456597}
   - component: {fileID: 1260162969437456594}
-  - component: {fileID: 1260162969437456593}
   m_Layer: 0
   m_Name: LeftEye
   m_TagString: MainCamera
@@ -15987,18 +16194,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1260162969437456593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260162969437456592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9134f8e3614cf424bb286babf8e1af11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1260162969437456594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16014,8 +16209,8 @@ MonoBehaviour:
   m_Singleton: 0
   m_DefaultDuration: 2
   m_FadeOnStart: 1
-  m_StartColor: {r: 0, g: 0, b: 0, a: 1}
-  m_CurrentColor: {r: 0, g: 0, b: 0, a: 0}
+  m_StartColor: {r: 0.105882354, g: 0.10980392, b: 0.25490198, a: 1}
+  m_CurrentColor: {r: 0.105882354, g: 0.10980392, b: 0.25490198, a: 0}
   CustomFaderMaterial: {fileID: 0}
 --- !u!4 &1260162969437456595
 Transform:
@@ -16324,7 +16519,6 @@ GameObject:
   - component: {fileID: 1260162970336038744}
   - component: {fileID: 1260162970336038746}
   - component: {fileID: 1260162970336038747}
-  - component: {fileID: 1260162970336038748}
   m_Layer: 0
   m_Name: RightEye
   m_TagString: MainCamera
@@ -16390,21 +16584,9 @@ MonoBehaviour:
   m_Singleton: 0
   m_DefaultDuration: 2
   m_FadeOnStart: 1
-  m_StartColor: {r: 0, g: 0, b: 0, a: 1}
-  m_CurrentColor: {r: 0, g: 0, b: 0, a: 0}
+  m_StartColor: {r: 0.105882354, g: 0.10980392, b: 0.25490198, a: 1}
+  m_CurrentColor: {r: 0.105882354, g: 0.10980392, b: 0.25490198, a: 0}
   CustomFaderMaterial: {fileID: 0}
---- !u!114 &1260162970336038748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260162970336038745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9134f8e3614cf424bb286babf8e1af11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &2260981814505312884
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -16504,6 +16686,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Balloon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6874929112362231500, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7580682159929775327, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
@@ -16727,6 +16914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: OceanPlane
+      objectReference: {fileID: 0}
+    - target: {fileID: 3565549005676371386, guid: dca03361c90ddc945b6ae8fd27d8232e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093694719758848105, guid: dca03361c90ddc945b6ae8fd27d8232e,
         type: 3}
