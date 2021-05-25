@@ -19,10 +19,10 @@ public class DartHolder : MonoBehaviour
     Vector3 lastPosition;
     Vector3 lastRotVelocity;
     Quaternion lastRotation;
-    Vector3[] velocityAvg = new Vector3[3];
+    Vector3[] velocityAvg = new Vector3[6];
 
     float debugOffset;
-    public void FixedUpdate()
+    void StoreVelocity()
     {
 
         Quaternion rotation = transform.rotation;
@@ -33,7 +33,7 @@ public class DartHolder : MonoBehaviour
             velocityAvg[i - 1] = velocityAvg[i];
         }
         Vector3 offset = (position - lastPosition) + (rotVelocity - lastRotVelocity);
-        velocityAvg[velocityAvg.Length - 1] = offset;
+        velocityAvg[velocityAvg.Length - 1] = offset / Time.deltaTime;
         lastPosition = position;
         lastRotVelocity = rotVelocity;
         lastRotation = rotation;
@@ -41,6 +41,7 @@ public class DartHolder : MonoBehaviour
 
     public void Update()
     {
+        StoreVelocity();
         bool held = dart.mode == Dart.Mode.Held;
         debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(input.useSecondaryDevice ? KeyCode.R : KeyCode.E) ? 3f : -3f), 0f, 1f);
         debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset);
@@ -70,11 +71,11 @@ public class DartHolder : MonoBehaviour
                 bool forceValid = force.magnitude > 0.01f;
                 if (dart.mode == Dart.Mode.Held && forceValid)
                 {
-                    dart.Throw(force / Time.fixedDeltaTime);
+                    dart.Throw(force);
                 }
                 else if (dart.mode == Dart.Mode.Recall)
                 {
-                    dart.CancelRecall(forceValid ? force / Time.fixedDeltaTime : Vector3.zero);
+                    dart.CancelRecall(forceValid ? force : Vector3.zero);
                 }
             }
             else if (down)
