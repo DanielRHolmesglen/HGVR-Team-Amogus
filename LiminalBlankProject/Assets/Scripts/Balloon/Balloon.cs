@@ -6,11 +6,17 @@ public class Balloon : MonoBehaviour
 {
     public BalloonPopper popper;
     [SerializeField]
-    ParticleSystem popParticles;
+    GameObject popParticles;
     [SerializeField]
     ConstantForce force;
 
+    [SerializeField]
+    AudioSource source;
+    [SerializeField]
+    AudioClip[] damageSounds;
+
     public float lifetime = 40.0f;
+    public int health = 1;
     void Start()
     {
         this.name = "Balloon";
@@ -21,16 +27,23 @@ public class Balloon : MonoBehaviour
     public void OnPop()
     {
         if (popParticles != null)
-        {
-            popParticles.transform.SetParent(null);
-            popParticles.gameObject.SetActive(true);
-            Destroy(popParticles.gameObject, 6.0f);
-        }
+            Destroy(GameObject.Instantiate(popParticles, transform.position + Vector3.up * 0.3f * transform.lossyScale.y, transform.rotation, MovingMap.transform), 10.0f);
     }
 
     public void OnPopEnded()
     {
         Destroy(gameObject);
+    }
+
+    public void Damage()
+    {
+        if (--health == 0)
+        {
+            popper.Pop();
+        } else
+        {
+            source?.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length)]);
+        }
     }
 
     void Update()

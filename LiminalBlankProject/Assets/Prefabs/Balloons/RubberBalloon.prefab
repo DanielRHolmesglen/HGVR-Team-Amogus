@@ -187,7 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popper: {fileID: 2986739233441380763}
-  popParticles: {fileID: 0}
+  popParticles: {fileID: 2313782027464057977, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
+    type: 3}
   force: {fileID: 426552610665720151}
   lifetime: 40
 --- !u!114 &2986739233441380763

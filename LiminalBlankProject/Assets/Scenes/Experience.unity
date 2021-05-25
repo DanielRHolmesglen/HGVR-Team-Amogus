@@ -8682,9 +8682,9 @@ MonoBehaviour:
     - {fileID: 5006512736763041015}
     - {fileID: 5006512736763041015}
     - {fileID: 5006512736763041015}
-    - {fileID: 5006512736763041015}
-    - {fileID: 5006512736763041015}
-    - {fileID: 329885863867030992}
+    - {fileID: 792906244075589040}
+    - {fileID: 792906244075589040}
+    - {fileID: 792906244075589040}
     - {fileID: 329885863867030992}
   spawnPoints:
   - {fileID: 1277458468}
@@ -19503,6 +19503,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5006512736763041015}
+  - {fileID: 792906244075589040}
   - {fileID: 329885863867030992}
   m_Father: {fileID: 30881054}
   m_RootOrder: 6
@@ -19936,7 +19937,7 @@ PrefabInstance:
     - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
         type: 3}
@@ -19979,6 +19980,81 @@ MonoBehaviour:
   m_StartColor: {r: 0.105882354, g: 0.10980392, b: 0.25490198, a: 1}
   m_CurrentColor: {r: 0.105882354, g: 0.10980392, b: 0.25490198, a: 0}
   CustomFaderMaterial: {fileID: 0}
+--- !u!1001 &792906244075589039
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2019443219}
+    m_Modifications:
+    - target: {fileID: 857547920677014326, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_Name
+      value: ReinforcedRubberBalloon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000009735359
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bb5f99042fb318a47b10262b8c9ec5f5, type: 3}
+--- !u!4 &792906244075589040 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4448930340404394277, guid: bb5f99042fb318a47b10262b8c9ec5f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 792906244075589039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &914683197314204984
 Animator:
   serializedVersion: 3

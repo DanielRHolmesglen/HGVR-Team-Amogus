@@ -146,7 +146,7 @@ public class Dart : MonoBehaviour
     {
         if (trans.name == "Balloon")
         {
-            trans.GetComponent<BalloonPopper>()?.Pop();
+            trans.GetComponent<Balloon>()?.Damage();
             return true;
         }
         return false;

@@ -12,7 +12,7 @@ public class ExplosiveBalloon : MonoBehaviour
             {
                 Balloon balloon = col.GetComponent<Balloon>();
                 if (balloon && !balloon.popper.hasPopped)
-                    balloon.popper.Pop();
+                    balloon.Damage();
             }
         }
     }
