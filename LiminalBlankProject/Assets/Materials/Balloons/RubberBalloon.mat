@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Balloon
+  m_Name: RubberBalloon
   m_Shader: {fileID: 4800000, guid: 0b537ba022eea244795750203ee496cc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
