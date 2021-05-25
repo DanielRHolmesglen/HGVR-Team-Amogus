@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7580682159929775327}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1470699047658867836
 MeshFilter:
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 426552610665720151}
   - component: {fileID: 1296999199}
   m_Layer: 0
-  m_Name: Balloon
+  m_Name: RubberBalloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8413745578147700168}
   - {fileID: 7580682161342740042}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -188,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popper: {fileID: 2986739233441380763}
-  popParticles: {fileID: 8413745578147700171}
+  popParticles: {fileID: 0}
   force: {fileID: 426552610665720151}
   lifetime: 40
 --- !u!114 &2986739233441380763
@@ -247,6 +246,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  hasPopped: 0
 --- !u!64 &8296172667768940261
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -281,8 +281,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 60
+  MinDistance: 10
+  MaxDistance: 120
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -332,7 +332,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.1388889
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -403,89 +403,4 @@ MonoBehaviour:
   force: {fileID: 426552610665720151}
   mesh: {fileID: 5139857968019640848}
   poppedMesh: {fileID: 827434410171346009}
---- !u!1001 &6115771162605418932
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7580682159929775327}
-    m_Modifications:
-    - target: {fileID: 2313782027464057977, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_Name
-      value: Confetti
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057977, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.333
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.00000009735359
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9c407f5e9fabe98468cd82d92ffb1a4f, type: 3}
---- !u!4 &8413745578147700168 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2313782027464057980, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6115771162605418932}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &8413745578147700171 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2313782027464057983, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6115771162605418932}
-  m_PrefabAsset: {fileID: 0}
+  randomizeColor: 1

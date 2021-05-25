@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Balloon : MonoBehaviour
 {
-    [SerializeField]
-    BalloonPopper popper;
+    public BalloonPopper popper;
     [SerializeField]
     ParticleSystem popParticles;
     [SerializeField]
@@ -21,9 +20,12 @@ public class Balloon : MonoBehaviour
 
     public void OnPop()
     {
-        popParticles.transform.SetParent(null);
-        popParticles.gameObject.SetActive(true);
-        Destroy(popParticles.gameObject, 6.0f); 
+        if (popParticles != null)
+        {
+            popParticles.transform.SetParent(null);
+            popParticles.gameObject.SetActive(true);
+            Destroy(popParticles.gameObject, 6.0f);
+        }
     }
 
     public void OnPopEnded()

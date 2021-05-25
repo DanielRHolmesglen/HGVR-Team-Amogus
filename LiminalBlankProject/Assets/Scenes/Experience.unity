@@ -8667,9 +8667,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - name: 
-    enemy: {fileID: 5006512736763041015}
-    enemyAmount: 40
-    spawnRate: 5
+    enemyAmount: 200
+    spawnRate: 2
+    enemies:
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 5006512736763041015}
+    - {fileID: 329885863867030992}
   spawnPoints:
   - {fileID: 1277458468}
   - {fileID: 978373325}
@@ -19487,6 +19503,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5006512736763041015}
+  - {fileID: 329885863867030992}
   m_Father: {fileID: 30881054}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19869,6 +19886,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5192037224520077565}
   m_Mesh: {fileID: 5099283390446285918, guid: d686755694286da45b46891db96e930d, type: 3}
+--- !u!1001 &329885863867030991
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2019443219}
+    m_Modifications:
+    - target: {fileID: 2528137227355962516, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_Name
+      value: BombBalloon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000009735359
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f67d980fdb3b6234bb84d3e9090b5054, type: 3}
+--- !u!4 &329885863867030992 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1535418171071712903, guid: f67d980fdb3b6234bb84d3e9090b5054,
+    type: 3}
+  m_PrefabInstance: {fileID: 329885863867030991}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &389286678803827110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20862,7 +20954,7 @@ PrefabInstance:
     - target: {fileID: 6874929112362231500, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: m_Name
-      value: Balloon
+      value: RubberBalloon
       objectReference: {fileID: 0}
     - target: {fileID: 7580682159929775327, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}

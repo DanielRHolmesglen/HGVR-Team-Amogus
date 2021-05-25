@@ -15,12 +15,12 @@ public class BalloonWaves : MonoBehaviour
     {
         //Name of the wave.
         public string name;
-        //Referene to our enemy gameobject.
-        public Transform enemy;
         //Amount of the enemies.
         public int enemyAmount;
         //Rate which the enemies spawn into the map.
         public float spawnRate;
+        //Reference to our enemy transforms.
+        public Transform[] enemies;
     }
     //An array to make separate waves.
     public Wave[] waves;
@@ -123,7 +123,9 @@ public class BalloonWaves : MonoBehaviour
 
         for (int i = 0; i < _wave.enemyAmount; i++)
         {
-            SpawnEnemy(_wave.enemy);
+            int randI = Random.Range(0, _wave.enemies.Length);
+            Debug.Log(randI);
+            SpawnEnemy(_wave.enemies[randI]);
             yield return new WaitForSeconds(1f / _wave.spawnRate);
         }
 
