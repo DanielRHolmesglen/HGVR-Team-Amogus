@@ -61,7 +61,7 @@ public class Dart : MonoBehaviour
     float timePosition;
     int timelineLimit;
 
-    Transform lastHit;
+    Collider lastHit;
     
     void Awake()
     {
@@ -122,7 +122,8 @@ public class Dart : MonoBehaviour
     }
 
     public void Recall()
-    { 
+    {
+        lastHit = null;
         timePosition = 1.0f;
         mode = Mode.Recall;
         float reversedTime = reversedAudio.isPlaying ? Mathf.Clamp(reversedAudio.clip.length - reversedAudio.time, 0f, 1f) : 0f;
@@ -144,11 +145,16 @@ public class Dart : MonoBehaviour
         timeline.Clear();
         UpdateTrail();
     }
-    bool HitIfBalloon(Transform trans)
+    bool HitIfBalloon(RaycastHit hit)
     {
-        if (trans.name == "Balloon" && lastHit != trans)
+        Transform trans = hit.transform;
+        if (trans.name == "Balloon")
         {
-            trans.GetComponent<Balloon>()?.Damage();
+            if (lastHit != hit.collider)
+            {
+                lastHit = hit.collider;
+                trans.GetComponent<Balloon>()?.Damage(transform.position);
+            }
             return true;
         }
         return false;
@@ -246,10 +252,8 @@ public class Dart : MonoBehaviour
                 Ray ray = new Ray(transform.position, transform.forward);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, Vector3.Distance(transform.position, point.position) * 2f))
                 {
-                    HitIfBalloon(hitInfo.transform);
-                    lastHit = hitInfo.transform;
+                    HitIfBalloon(hitInfo);
                 }
-                else lastHit = null;
 
                 transform.position = point.position;
                 UpdateTrail(timePosition);
@@ -270,16 +274,15 @@ public class Dart : MonoBehaviour
                 Ray ray = new Ray(transform.position, velocity.normalized);
                 RaycastHit hitInfo;
                 bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * Time.deltaTime * 2f);
-                Vector3 newPosition = hit ? hitInfo.point : transform.position + velocity * Time.deltaTime;
+                Vector3 newPosition = hit ? hitInfo.point + velocity.normalized * 0.001f : transform.position + velocity * Time.deltaTime;
                 transform.position = newPosition;
-                if (hit && !HitIfBalloon(hitInfo.transform))
+                if (hit && !HitIfBalloon(hitInfo))
                 {
                     audio.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
                     inactive = true;
                 }
                 else
                 {
-                    lastHit = null;
                     if (velocity.sqrMagnitude != 0f)
                     {
                         float t = Mathf.Min(1f, velocity.magnitude) * Time.deltaTime * 50f;

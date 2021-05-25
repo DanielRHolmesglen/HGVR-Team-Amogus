@@ -190,6 +190,7 @@ MonoBehaviour:
   popParticles: {fileID: 2313782027464057977, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
     type: 3}
   force: {fileID: 426552610665720151}
+  rigidBody: {fileID: 1736641474}
   source: {fileID: 8296172667768940263}
   damageSounds: []
   lifetime: 40

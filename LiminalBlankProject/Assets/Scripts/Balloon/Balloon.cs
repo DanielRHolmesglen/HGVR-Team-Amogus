@@ -9,6 +9,8 @@ public class Balloon : MonoBehaviour
     GameObject popParticles;
     [SerializeField]
     ConstantForce force;
+    [SerializeField]
+    Rigidbody rigidBody;
 
     [SerializeField]
     AudioSource source;
@@ -40,7 +42,7 @@ public class Balloon : MonoBehaviour
     public void Damage()
     {
         if (hitCooldown > 0.0f) return;
-        hitCooldown = 0.2f;
+        hitCooldown = 0.1f;
         if (--health == 0)
         {
             popper.Pop();
@@ -48,6 +50,13 @@ public class Balloon : MonoBehaviour
         {
             source?.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length)]);
         }
+    }
+
+    public void Damage(Vector3 source)
+    {
+        Damage();
+        if (health > 0)
+            rigidBody.AddForce((transform.position - source).normalized, ForceMode.Impulse);
     }
 
     void Update()
