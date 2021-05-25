@@ -189,6 +189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popper: {fileID: 2986739233441380763}
   popParticles: {fileID: 8413745578147700171}
+  force: {fileID: 426552610665720151}
+  lifetime: 40
 --- !u!114 &2986739233441380763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +397,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 808c162e0af534e408ec61fccbaa6c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleRange: {x: 1.375, y: 1.625}
+  speedRange: {x: 0.35, y: 0.8}
+  balloon: {fileID: 536335378}
+  force: {fileID: 426552610665720151}
   mesh: {fileID: 5139857968019640848}
   poppedMesh: {fileID: 827434410171346009}
 --- !u!1001 &6115771162605418932

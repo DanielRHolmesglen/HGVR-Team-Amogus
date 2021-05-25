@@ -38,7 +38,7 @@ public class Dart : MonoBehaviour
     bool inactive;
 
     private static readonly Vector3 endOffset = new Vector3(0f, 0f, -0.3651232f);
-
+    private static readonly float recallSpeed = 1.9f;
     public struct TimePoint
     {
         public Quaternion rotation;
@@ -114,7 +114,7 @@ public class Dart : MonoBehaviour
         timeline.RemoveRange(start, timeline.Count - start);
         float reversedTime = audio.isPlaying ? Mathf.Clamp(audio.clip.length - audio.time, 0f, 1f) : 0f;
         audio.Stop();
-        reversedAudio.pitch = 2f;
+        reversedAudio.pitch = recallSpeed;
         reversedAudio.time = reversedTime;
         reversedAudio.Play();
     }
@@ -125,7 +125,7 @@ public class Dart : MonoBehaviour
         mode = Mode.Recall;
         float reversedTime = reversedAudio.isPlaying ? Mathf.Clamp(reversedAudio.clip.length - reversedAudio.time, 0f, 1f) : 0f;
         reversedAudio.Stop();
-        audio.pitch = 2f;
+        audio.pitch = recallSpeed;
         audio.time = reversedTime;
         audio.Play();
     }
@@ -232,7 +232,7 @@ public class Dart : MonoBehaviour
         if (mode == Mode.Recall)
         {
             timeInAir = Mathf.Max(0f, timeInAir - Time.deltaTime);
-            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * 2f));
+            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * recallSpeed));
             if (timePosition > 0f && timeline.Count > 0)
             {
                 TimePoint point = GetTimePoint(timePosition);
