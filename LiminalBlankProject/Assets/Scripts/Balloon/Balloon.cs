@@ -17,6 +17,8 @@ public class Balloon : MonoBehaviour
 
     public float lifetime = 40.0f;
     public int health = 1;
+
+    float hitCooldown = 0.0f;
     void Start()
     {
         this.name = "Balloon";
@@ -37,6 +39,8 @@ public class Balloon : MonoBehaviour
 
     public void Damage()
     {
+        if (hitCooldown > 0.0f) return;
+        hitCooldown = 0.2f;
         if (--health == 0)
         {
             popper.Pop();
@@ -49,6 +53,7 @@ public class Balloon : MonoBehaviour
     void Update()
     {
         lifetime -= Time.deltaTime;
+        hitCooldown -= Time.deltaTime;
         if (lifetime < 0f) Destroy(gameObject);
     }
 }

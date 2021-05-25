@@ -60,6 +60,8 @@ public class Dart : MonoBehaviour
     List<TimePoint> timeline;
     float timePosition;
     int timelineLimit;
+
+    Transform lastHit;
     
     void Awake()
     {
@@ -142,9 +144,9 @@ public class Dart : MonoBehaviour
         timeline.Clear();
         UpdateTrail();
     }
-    static bool PopIfBalloon(Transform trans)
+    bool HitIfBalloon(Transform trans)
     {
-        if (trans.name == "Balloon")
+        if (trans.name == "Balloon" && lastHit != trans)
         {
             trans.GetComponent<Balloon>()?.Damage();
             return true;
@@ -243,7 +245,11 @@ public class Dart : MonoBehaviour
 
                 Ray ray = new Ray(transform.position, transform.forward);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, Vector3.Distance(transform.position, point.position) * 2f))
-                    PopIfBalloon(hitInfo.transform);
+                {
+                    HitIfBalloon(hitInfo.transform);
+                    lastHit = hitInfo.transform;
+                }
+                else lastHit = null;
 
                 transform.position = point.position;
                 UpdateTrail(timePosition);
@@ -266,16 +272,20 @@ public class Dart : MonoBehaviour
                 bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * Time.deltaTime * 2f);
                 Vector3 newPosition = hit ? hitInfo.point : transform.position + velocity * Time.deltaTime;
                 transform.position = newPosition;
-                if (hit && !PopIfBalloon(hitInfo.transform))
+                if (hit && !HitIfBalloon(hitInfo.transform))
                 {
                     audio.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
                     inactive = true;
                 }
-                else if (velocity.sqrMagnitude != 0f)
+                else
                 {
-                    float t = Mathf.Min(1f, velocity.magnitude) * Time.deltaTime * 50f;
-                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity, transform.up), t);
-                    transform.Rotate(0f, 0f, Time.deltaTime * 360f, Space.Self);
+                    lastHit = null;
+                    if (velocity.sqrMagnitude != 0f)
+                    {
+                        float t = Mathf.Min(1f, velocity.magnitude) * Time.deltaTime * 50f;
+                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity, transform.up), t);
+                        transform.Rotate(0f, 0f, Time.deltaTime * 360f, Space.Self);
+                    }
                 }
                 if (timeline.Count > 0)
                 {

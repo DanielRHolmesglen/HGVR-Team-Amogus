@@ -190,7 +190,10 @@ MonoBehaviour:
   popParticles: {fileID: 2313782027464057977, guid: 9c407f5e9fabe98468cd82d92ffb1a4f,
     type: 3}
   force: {fileID: 426552610665720151}
+  source: {fileID: 8296172667768940263}
+  damageSounds: []
   lifetime: 40
+  health: 1
 --- !u!114 &2986739233441380763
 MonoBehaviour:
   m_ObjectHideFlags: 0
