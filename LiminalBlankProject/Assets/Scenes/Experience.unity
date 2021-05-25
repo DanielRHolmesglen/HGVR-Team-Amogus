@@ -20161,8 +20161,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
-  far clip plane: 4096
+  near clip plane: 0.02
+  far clip plane: 3500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -20518,8 +20518,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
-  far clip plane: 4096
+  near clip plane: 0.02
+  far clip plane: 3500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -20818,8 +20818,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
-  far clip plane: 4096
+  near clip plane: 0.02
+  far clip plane: 3500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -21147,7 +21147,7 @@ Transform:
   m_GameObject: {fileID: 8152017497619420539}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2000, y: 2000, z: 2000}
+  m_LocalScale: {x: 1500, y: 1500, z: 1500}
   m_Children: []
   m_Father: {fileID: 30881054}
   m_RootOrder: 2
