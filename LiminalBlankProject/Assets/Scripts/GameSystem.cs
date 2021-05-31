@@ -39,4 +39,16 @@ public class GameSystem : MonoBehaviour
             Time.timeScale = Input.GetKey(KeyCode.L) ? 10f : 1f;
         }
     }
+    IEnumerator Ending()
+    {
+        while (music.volume > 0.0f)
+        {
+            music.volume = Mathf.Max(0f, music.volume - Time.deltaTime * 0.2f);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+    public void MapLanded()
+    {
+        StartCoroutine("Ending");
+    }
 }

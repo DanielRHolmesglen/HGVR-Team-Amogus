@@ -44,7 +44,8 @@ public class Balloon : MonoBehaviour
 
     public void IceUp()
     {
-        StartCoroutine(Iced());
+        if (!immuneToIce)
+            StartCoroutine(Iced());
     }
 
     public void Awake()

@@ -1,14 +1,16 @@
 // Shader created with Shader Forge v1.40 
 // Shader Forge (c) Freya Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
-/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:0,lgpr:1,limd:0,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:False,hqlp:False,rprd:False,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:False,aust:True,igpj:False,qofs:0,qpre:1,rntp:1,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:3138,x:32719,y:32712,varname:node_3138,prsc:2|emission-7241-RGB;n:type:ShaderForge.SFN_Color,id:7241,x:32471,y:32812,ptovrint:False,ptlb:Color,ptin:_Color,varname:node_7241,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:1,c2:1,c3:1,c4:1;proporder:7241;pass:END;sub:END;*/
+/*SF_DATA;ver:1.40;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,cpap:True,lico:0,lgpr:1,limd:0,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:False,hqlp:False,rprd:False,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,atcv:True,rfrpo:False,rfrpn:Refraction,coma:15,ufog:False,aust:False,igpj:False,qofs:9000,qpre:1,rntp:1,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,atwp:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:3138,x:32719,y:32712,varname:node_3138,prsc:2|emission-7241-RGB,alpha-4995-OUT;n:type:ShaderForge.SFN_Color,id:7241,x:32271,y:32759,ptovrint:False,ptlb:Color,ptin:_Color,varname:_Color,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,c1:1,c2:1,c3:1,c4:1;n:type:ShaderForge.SFN_FragmentPosition,id:6662,x:31937,y:33018,varname:node_6662,prsc:2;n:type:ShaderForge.SFN_ViewPosition,id:6154,x:31961,y:33228,varname:node_6154,prsc:2;n:type:ShaderForge.SFN_Subtract,id:3150,x:32156,y:33158,varname:node_3150,prsc:2|A-6662-XYZ,B-6154-XYZ;n:type:ShaderForge.SFN_ComponentMask,id:6309,x:32301,y:33158,varname:node_6309,prsc:2,cc1:1,cc2:-1,cc3:-1,cc4:-1|IN-3150-OUT;n:type:ShaderForge.SFN_Clamp01,id:4995,x:32510,y:33148,varname:node_4995,prsc:2|IN-6309-OUT;proporder:7241;pass:END;sub:END;*/
 
 Shader "Shader Forge/Stars" {
     Properties {
         _Color ("Color", Color) = (1,1,1,1)
+        [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
     }
     SubShader {
         Tags {
+            "Queue"="Geometry+9000"
             "RenderType"="Opaque"
         }
         Pass {
@@ -18,6 +20,7 @@ Shader "Shader Forge/Stars" {
             }
             
             
+            AlphaToMask On
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -35,11 +38,13 @@ Shader "Shader Forge/Stars" {
             struct VertexOutput {
                 float4 pos : SV_POSITION;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
+                float4 posWorld : TEXCOORD0;
             };
             VertexOutput vert (VertexInput v) {
                 VertexOutput o = (VertexOutput)0;
                 UNITY_SETUP_INSTANCE_ID( v );
                 UNITY_TRANSFER_INSTANCE_ID( v, o );
+                o.posWorld = mul(unity_ObjectToWorld, v.vertex);
                 o.pos = UnityObjectToClipPos( v.vertex );
                 return o;
             }
@@ -50,7 +55,9 @@ Shader "Shader Forge/Stars" {
                 float4 _Color_var = UNITY_ACCESS_INSTANCED_PROP( Props, _Color );
                 float3 emissive = _Color_var.rgb;
                 float3 finalColor = emissive;
-                return fixed4(finalColor,1);
+                float3 node_3150 = (i.posWorld.rgb-_WorldSpaceCameraPos);
+                float node_6309 = node_3150.g;
+                return fixed4(finalColor,saturate(node_6309));
             }
             ENDCG
         }
