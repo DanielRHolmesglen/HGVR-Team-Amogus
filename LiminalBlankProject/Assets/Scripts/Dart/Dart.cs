@@ -153,6 +153,7 @@ public class Dart : MonoBehaviour
     public void Recall()
     {
         lastHit = null;
+        inactive = false;
         timePosition = 1.0f;
         mode = Mode.Recall;
         float reversedTime = reversedAudio.isPlaying ? Mathf.Clamp(reversedAudio.clip.length - reversedAudio.time, 0f, 1f) : 0f;

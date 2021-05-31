@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDestination: {x: 0, y: -82, z: 0}
-  timeToDestination: 150
+  timeToDestination: 130
   finishedMoving:
     m_PersistentCalls:
       m_Calls:
