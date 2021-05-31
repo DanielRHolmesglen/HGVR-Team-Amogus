@@ -12,6 +12,12 @@ public class Balloon : MonoBehaviour
     AudioSource source;
     [SerializeField]
     AudioClip[] damageSounds;
+    [SerializeField]
+    AudioClip[] icedSounds;
+    [SerializeField]
+    ParticleSystem icedParticles;
+    [SerializeField]
+    bool immuneToIce = false;
 
     public Vector3 force = Vector3.up;
     private Vector3 temporaryForce = Vector3.zero;
@@ -19,6 +25,28 @@ public class Balloon : MonoBehaviour
     public int health = 1;
 
     float hitCooldown = 0.0f;
+
+    public IEnumerator SpeedModifier(float multiplier, float time)
+    {
+        force *= multiplier;
+        yield return new WaitForSeconds(time);
+        force /= multiplier;
+    }
+
+    IEnumerator Iced()
+    {
+        source.PlayOneShot(icedSounds[Random.Range(0, icedSounds.Length)]);
+        icedParticles.Play();
+        lifetime += 8.0f;
+        yield return SpeedModifier(0.2f, 10.0f);
+        icedParticles.Stop();
+    }
+
+    public void IceUp()
+    {
+        StartCoroutine(Iced());
+    }
+
     public void Awake()
     {
         this.name = "Balloon";

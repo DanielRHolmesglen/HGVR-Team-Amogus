@@ -198,6 +198,27 @@ PrefabInstance:
       propertyPath: health
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1296999199, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
+      propertyPath: scaleRange.x
+      value: 1.575
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296999199, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
+      propertyPath: scaleRange.y
+      value: 1.825
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296999199, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
+      propertyPath: speedRange.x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296999199, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
+      propertyPath: speedRange.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677179547909275820, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
 --- !u!4 &4448930340404394277 stripped

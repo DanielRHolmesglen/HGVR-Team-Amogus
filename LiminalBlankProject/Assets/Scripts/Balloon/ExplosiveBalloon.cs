@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class ExplosiveBalloon : MonoBehaviour
 {
+    public virtual void Hit(Balloon balloon)
+    {
+        balloon.Damage();
+    }
+
     void Explode(Vector3 origin, float radius)
     {
         foreach (Collider col in Physics.OverlapSphere(origin, radius))
@@ -12,7 +17,7 @@ public class ExplosiveBalloon : MonoBehaviour
             {
                 Balloon balloon = col.GetComponent<Balloon>();
                 if (balloon && !balloon.popper.hasPopped)
-                    balloon.Damage();
+                    Hit(balloon);
             }
         }
     }
