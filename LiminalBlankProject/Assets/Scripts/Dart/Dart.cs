@@ -112,8 +112,7 @@ public class Dart : MonoBehaviour
         mode = Mode.Projectile;
         Vector3 oldVelocity = GetTimePoint(timePosition).velocity;
         velocity = newForce == Vector3.zero ? oldVelocity : Vector3.Lerp(newForce.normalized, oldVelocity.normalized, 0.333333f) * oldVelocity.magnitude;
-        int start = (int)timePosition;
-        timeline.RemoveRange(start, timeline.Count - start);
+        timeline.RemoveRange(0, timeline.Count - 1);
         float reversedTime = audio.isPlaying ? Mathf.Clamp(audio.clip.length - audio.time, 0f, 1f) : 0f;
         audio.Stop();
         reversedAudio.pitch = recallSpeed;
@@ -229,7 +228,7 @@ public class Dart : MonoBehaviour
         //*/
     }
 
-    public void Update()
+    public void LateUpdate()
     {
         if (mode != Mode.Held)
         {
@@ -249,7 +248,8 @@ public class Dart : MonoBehaviour
                 if (forward.sqrMagnitude > 0)
                     transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(forward, transform.up), point.rotation, 1f - Mathf.Pow(1f - timePosition, 2));
 
-                Ray ray = new Ray(transform.position, transform.forward);
+                Ray ray = new Ray(transform.position, -forward);
+                Debug.DrawRay(ray.origin, ray.direction);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, Vector3.Distance(transform.position, point.position) * 2f))
                 {
                     HitIfBalloon(hitInfo);

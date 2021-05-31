@@ -40,5 +40,6 @@ public class DesktopAvatar : MonoBehaviour
     {
         eye.localPosition = Vector3.zero;
         eye.localRotation = Quaternion.identity;
+        transform.localPosition = new Vector3(transform.localPosition.x, 0.85f, transform.localPosition.z);
     }
 }

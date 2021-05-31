@@ -11,8 +11,6 @@ public class BalloonRandomizer : MonoBehaviour
     [SerializeField]
     Balloon balloon;
     [SerializeField]
-    ConstantForce force;
-    [SerializeField]
     MeshRenderer mesh;
     [SerializeField]
     SkinnedMeshRenderer poppedMesh;
@@ -21,7 +19,7 @@ public class BalloonRandomizer : MonoBehaviour
     bool randomizeColor = false;
 
     private static Material[] hues = new Material[8];
-    void Awake()
+    void Start()
     {
         if (randomizeColor)
         {
@@ -40,7 +38,7 @@ public class BalloonRandomizer : MonoBehaviour
 
         transform.localScale *= Random.Range(scaleRange.x, scaleRange.y);
         float speed = Random.Range(speedRange.x, speedRange.y);
-        force.force *= speed;
+        balloon.force *= speed;
         balloon.lifetime /= speed;
     }
 }
