@@ -28,7 +28,7 @@ public class MovingMap : MonoBehaviour
         }
     }
 
-    void Update()
+    public void Update()
     {
         bool moving = progress < 1f;
         progress = Mathf.Min(1f, progress + Time.deltaTime / timeToDestination);

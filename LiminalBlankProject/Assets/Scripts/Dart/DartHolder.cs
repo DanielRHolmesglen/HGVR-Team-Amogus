@@ -26,23 +26,18 @@ public class DartHolder : MonoBehaviour
         Quaternion rotation = transform.rotation;
         Vector3 position = transform.TransformPoint(rotation * Quaternion.Inverse(lastRotation) * GetDartOffset());
         position = MovingMap.transform.InverseTransformPoint(position);
+
         for (int i = 1; i != velocityAvg.Length; ++i)
-        {
             velocityAvg[i - 1] = velocityAvg[i];
-        }
+
         Vector3 offset = position - lastPosition;
         velocityAvg[velocityAvg.Length - 1] = offset / Time.deltaTime;
         lastPosition = position;
         lastRotation = rotation;
     }
-
     public void LateUpdate()
     {
         StoreVelocity();
-    }
-
-    public void Update()
-    {
         bool held = dart.mode == Dart.Mode.Held;
         debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(input.useSecondaryDevice ? KeyCode.R : KeyCode.E) ? 3f : -3f), 0f, 1f);
         debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset);
@@ -68,23 +63,20 @@ public class DartHolder : MonoBehaviour
                 Vector3 force = Vector3.zero;
                 foreach (Vector3 v in velocityAvg) force += v;
                 force /= velocityAvg.Length;
-                force *= 3.5f;
-                bool forceValid = force.magnitude > 0.02f;
+                force *= 6f;
+                bool forceValid = force.magnitude > 0.2f;
                 if (dart.mode == Dart.Mode.Held && forceValid)
                 {
                     dart.Throw(force);
                 }
                 else if (dart.mode == Dart.Mode.Recall)
                 {
-                    dart.CancelRecall(forceValid ? force : Vector3.zero);
+                    dart.CancelRecall(force.magnitude > 1f ? force : Vector3.zero);
                 }
             }
-            else if (down)
+            else if (down && dart.mode == Dart.Mode.Projectile)
             {
-                if (dart.mode == Dart.Mode.Projectile)
-                {
-                    dart.Recall();
-                }
+                dart.Recall();
             }
         }
     }

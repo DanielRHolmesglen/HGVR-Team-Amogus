@@ -36,14 +36,15 @@ public class GameSystem : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            Time.timeScale = Input.GetKey(KeyCode.L) ? 10f : 1f;
+            Time.timeScale = Mathf.Lerp(Time.timeScale, Input.GetKey(KeyCode.L) ? 10f : 1f, Time.deltaTime * 2f);
+            music.pitch = Time.timeScale;
         }
     }
     IEnumerator Ending()
     {
         while (music.volume > 0.0f)
         {
-            music.volume = Mathf.Max(0f, music.volume - Time.deltaTime * 0.2f);
+            music.volume = Mathf.Max(0f, music.volume - Time.deltaTime * 0.01f);
             yield return new WaitForEndOfFrame();
         }
     }

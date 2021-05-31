@@ -93,8 +93,30 @@ public class Dart : MonoBehaviour
         }
     }
 
+    public Vector3 PointTowardsBalloon(Vector3 origin, Vector3 velocity, float influence = 1.0f)
+    {
+        Ray ray = new Ray(origin, velocity);
+        Vector3 closestPoint = Vector3.zero;
+        float closestDis = Mathf.Infinity;
+        Debug.DrawRay(ray.origin, velocity.normalized * velocity.magnitude * 0.5f);
+        foreach(RaycastHit hit in Physics.SphereCastAll(ray, 2.0f, velocity.magnitude * 0.5f))
+        {
+            if (hit.transform.gameObject.name == "Balloon")
+            {
+                float dis = Vector3.Cross(ray.direction, hit.point - ray.origin).sqrMagnitude;
+                if (dis < closestDis)
+                {
+                    closestDis = dis;
+                    closestPoint = hit.point + Vector3.up * 0.2f;
+                }
+            }
+        }
+        return closestDis == Mathf.Infinity ? velocity : Vector3.Lerp(velocity, (closestPoint - origin).normalized * velocity.magnitude, influence);
+    }
+
     public void Throw(Vector3 force)
     {
+        force = PointTowardsBalloon(transform.position, force, 0.6f);
         transform.SetParent(MovingMap.transform);
         mode = Mode.Projectile;
         inactive = false;
@@ -108,11 +130,19 @@ public class Dart : MonoBehaviour
     {
         int max = timeline.Count;
         if (max < 2 || inactive) return;
+
         transform.SetParent(MovingMap.transform);
         mode = Mode.Projectile;
         Vector3 oldVelocity = GetTimePoint(timePosition).velocity;
-        velocity = newForce == Vector3.zero ? oldVelocity : Vector3.Lerp(newForce.normalized, oldVelocity.normalized, 0.333333f) * oldVelocity.magnitude;
-        timeline.RemoveRange(0, timeline.Count - 1);
+        bool keepOld = newForce == Vector3.zero;
+        velocity = PointTowardsBalloon(transform.position, keepOld ? oldVelocity : newForce);
+        if (!keepOld)
+            timeline.RemoveRange(0, timeline.Count - 1);
+        else {
+            int i = (int)(timePosition * (timeline.Count - 1));
+            timeline.RemoveRange(i, timeline.Count - i);
+        }
+
         float reversedTime = audio.isPlaying ? Mathf.Clamp(audio.clip.length - audio.time, 0f, 1f) : 0f;
         audio.Stop();
         reversedAudio.pitch = recallSpeed;
@@ -178,8 +208,8 @@ public class Dart : MonoBehaviour
 
         Vector3 newPosition = Vector3.Lerp(dartPosition, MovingMap.transform.TransformPoint(position), Mathf.Sqrt(timePosition));
 
-        float magnitude = Mathf.Lerp(a.velocity.magnitude, b.velocity.magnitude, fractal);
-        return new TimePoint(rotation, newPosition, Vector3.LerpUnclamped(a.scale, b.scale, fractal), Vector3.LerpUnclamped(a.velocity, b.velocity, fractal).normalized * magnitude);
+        //float magnitude = Mathf.Lerp(a.velocity.magnitude, b.velocity.magnitude, fractal);
+        return new TimePoint(rotation, newPosition, Vector3.LerpUnclamped(a.scale, b.scale, fractal), Vector3.LerpUnclamped(a.velocity, b.velocity, fractal));//.normalized * magnitude);
     }
 
     public TimePoint GetTimePoint(float timePosition)
@@ -210,29 +240,12 @@ public class Dart : MonoBehaviour
 
         dartTrail.positionCount = segmentCount;
         dartTrail.SetPositions(segments);
-        /*//
-        minTimePosition = Mathf.Min(timeline.Count, minTimePosition * timeline.Count);
-        int len = Mathf.CeilToInt(minTimePosition);
-        Vector3[] positions = new Vector3[len];
-        for (int i = 0; i != len; ++i)
-            positions[i] = timeline[i].position;
-
-        if (len >= 2)
-        {
-            float fractal = Mathf.FloorToInt(len) - minTimePosition;
-            positions[len - 1] = Vector3.Lerp(positions[len - 1], positions[len - 2], 1f - fractal);
-        }
-
-        dartTrail.positionCount = len;
-        dartTrail.SetPositions(positions);
-        //*/
     }
 
     public void LateUpdate()
     {
         if (mode != Mode.Held)
         {
-            //    transform.localScale = Vector3.one * Mathf.Lerp(1f, GetScaleFactor() / heldScaleFactor, 0.2f);
             dartTrail.endWidth = 0.005f * Vector3.Distance(transform.position, holder.GetDartPosition());
         }
 
@@ -301,7 +314,6 @@ public class Dart : MonoBehaviour
         {
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * 6f);
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * 6f);
-            //heldScaleFactor = GetScaleFactor();
         }
     }
 }
