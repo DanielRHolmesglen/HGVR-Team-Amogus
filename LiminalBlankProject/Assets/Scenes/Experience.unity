@@ -8653,14 +8653,14 @@ MonoBehaviour:
     - {fileID: 899108266}
     - {fileID: 899108266}
     - {fileID: 899108266}
-    - {fileID: 899108266}
-    - {fileID: 899108266}
+    - {fileID: 2374708513309164906}
     - {fileID: 2374708513309164906}
     - {fileID: 329885863867030992}
-    - {fileID: 792906244075589040}
-    - {fileID: 792906244075589040}
-    - {fileID: 792906244075589040}
     - {fileID: 329885863867030992}
+    - {fileID: 792906244075589040}
+    - {fileID: 792906244075589040}
+    - {fileID: 792906244075589040}
+    - {fileID: 899108266}
   spawnPoints:
   - {fileID: 1277458468}
   - {fileID: 978373325}
@@ -20861,6 +20861,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375696197149988709, guid: 1e4c41b8b53167d4a9e1568cd78e039d,
+        type: 3}
+      propertyPath: speedRange.x
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e4c41b8b53167d4a9e1568cd78e039d, type: 3}
