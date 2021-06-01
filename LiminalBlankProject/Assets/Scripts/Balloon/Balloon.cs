@@ -6,7 +6,7 @@ public class Balloon : MonoBehaviour
 {
     public BalloonPopper popper;
     [SerializeField]
-    GameObject popParticles;
+    GameObject[] popParticles;
 
     [SerializeField]
     AudioSource source;
@@ -56,8 +56,12 @@ public class Balloon : MonoBehaviour
 
     public void OnPop()
     {
-        if (popParticles != null)
-            Destroy(GameObject.Instantiate(popParticles, transform.position + Vector3.up * 0.3f * transform.lossyScale.y, transform.rotation, MovingMap.transform), 10.0f);
+        foreach (GameObject particle in popParticles)
+        {
+            particle.transform.SetParent(MovingMap.transform, true);
+            particle.SetActive(true);
+            Destroy(particle, 10.0f);
+        }
     }
 
     public void OnPopEnded()
