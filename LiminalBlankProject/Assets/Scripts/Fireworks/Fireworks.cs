@@ -10,15 +10,23 @@ public class Fireworks : MonoBehaviour
     public static Fireworks singleton;
     void Awake()
     {
-        if (singleton != null) Destroy(this);
-        else
-        {
-            singleton = this;
-        }
+        singleton = this;
     }
     
     public void Emit()
     {
         fireworkParticles[Random.Range(0, fireworkParticles.Length)].Emit(1);
+    }
+
+    IEnumerator Celebration()
+    {
+        for (int i = 0; i != 100; ++i) {
+            Emit();
+            yield return new WaitForSeconds(0.25f);
+        }
+    }
+    public void Celebrate()
+    {
+        StartCoroutine(Celebration());
     }
 }

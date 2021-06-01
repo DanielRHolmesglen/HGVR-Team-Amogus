@@ -294,6 +294,7 @@ public class Dart : MonoBehaviour
                 if (hit && !HitIfBalloon(hitInfo))
                 {
                     audio.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
+                    hitInfo.transform.GetComponent<DartTarget>()?.Trigger();
                     inactive = true;
                 }
                 else

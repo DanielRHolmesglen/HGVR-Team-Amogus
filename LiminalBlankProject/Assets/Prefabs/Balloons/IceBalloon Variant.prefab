@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: health
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 536335378, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
+      propertyPath: scoreOnPop
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 827434410171346009, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

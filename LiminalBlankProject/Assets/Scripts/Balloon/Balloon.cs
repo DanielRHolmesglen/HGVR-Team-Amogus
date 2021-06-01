@@ -23,6 +23,7 @@ public class Balloon : MonoBehaviour
     private Vector3 temporaryForce = Vector3.zero;
     public float lifetime = 40.0f;
     public int health = 1;
+    public int scoreOnPop = 100;
 
     float hitCooldown = 0.0f;
 
@@ -56,6 +57,7 @@ public class Balloon : MonoBehaviour
 
     public void OnPop()
     {
+        ScoreTracker.singleton.score += scoreOnPop;
         Fireworks.singleton.Emit();
         foreach (GameObject particle in popParticles)
         {

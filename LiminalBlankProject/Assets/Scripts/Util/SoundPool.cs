@@ -9,7 +9,8 @@ public class SoundPool : MonoBehaviour
     AudioSource source;
     [SerializeField]
     AudioClip[] sounds;
-
+    [SerializeField]
+    Vector2 pitchRange = Vector2.one;
     IEnumerator DestroyAfter(float time)
     {
         yield return new WaitForSecondsRealtime(time);
@@ -18,6 +19,7 @@ public class SoundPool : MonoBehaviour
     void Start()
     {
         AudioClip clip = sounds[Random.Range(0, sounds.Length)];
+        source.pitch = Random.Range(pitchRange.x, pitchRange.y);
         source.PlayOneShot(clip);
         if (!Application.isPlaying)
             StartCoroutine(DestroyAfter(clip.length));

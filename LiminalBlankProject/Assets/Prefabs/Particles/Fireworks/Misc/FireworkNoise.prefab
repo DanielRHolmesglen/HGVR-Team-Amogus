@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6a6875c3d6fbd294885075d5361ff15f, type: 3}
   - {fileID: 8300000, guid: 76e53df6298a08d46916441a17da0bf5, type: 3}
   - {fileID: 8300000, guid: 83aee33c46daa8e478b8168dc7b1aba1, type: 3}
+  pitchRange: {x: 0.9, y: 1.1}
 --- !u!82 &7016071590523014973
 AudioSource:
   m_ObjectHideFlags: 0

@@ -18,14 +18,11 @@ public class MovingMap : MonoBehaviour
 
     private Vector3 startPosition = Vector3.zero;
     private float progress = 0.0f;
-    void Awake() {
-        if (singleton != null) Destroy(this);
-        else
-        {
-            singleton = this;
-            transform = gameObject.transform;
-            startPosition = transform.position;
-        }
+    void Awake()
+    {
+        singleton = this;
+        transform = gameObject.transform;
+        startPosition = transform.position;
     }
 
     public void Update()

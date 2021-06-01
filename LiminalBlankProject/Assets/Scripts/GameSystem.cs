@@ -32,11 +32,7 @@ public class GameSystem : MonoBehaviour
 
     void Awake()
     {
-        if (singleton != null) Destroy(this);
-        else
-        {
-            singleton = this;
-        }
+        singleton = this;
     }
 
     void Start()
