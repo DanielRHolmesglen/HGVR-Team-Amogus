@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDestination: {x: 0, y: -82, z: 0}
-  timeToDestination: 100
+  timeToDestination: 105
   finishedMoving:
     m_PersistentCalls:
       m_Calls:
@@ -1494,7 +1494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285121398}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 44.5, z: -533}
+  m_LocalPosition: {x: 0, y: 147, z: -533}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 969234549}
@@ -8102,8 +8102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - name: 
-    enemyAmount: 150
-    spawnRate: 2.5
+    enemyAmount: 125
+    spawnRate: 2.7
     enemies:
     - {fileID: 899108266}
     - {fileID: 899108266}
@@ -8119,7 +8119,7 @@ MonoBehaviour:
     - {fileID: 329885863867030992}
     - {fileID: 899108266}
     - {fileID: 899108266}
-    - {fileID: 792906244075589040}
+    - {fileID: 899108266}
     - {fileID: 792906244075589040}
   spawnPoints:
   - {fileID: 1277458468}
@@ -15306,7 +15306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299181964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 29, z: -533}
+  m_LocalPosition: {x: 0, y: 131.5, z: -533}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 969234549}
@@ -18929,11 +18929,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1375696197149988709, guid: 1e4c41b8b53167d4a9e1568cd78e039d,
-        type: 3}
-      propertyPath: speedRange.x
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e4c41b8b53167d4a9e1568cd78e039d, type: 3}
 --- !u!4 &2374708513309164906 stripped
@@ -19979,7 +19974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe2fe0f0e415a34cafd9b75a7ca86b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: 0.04, y: 0.04, z: 0.04}
+  rotation: {x: 0, y: 0, z: 0.1}
 --- !u!1 &8296172667639608100
 GameObject:
   m_ObjectHideFlags: 0

@@ -95,22 +95,23 @@ public class Dart : MonoBehaviour
 
     public Vector3 PointTowardsBalloon(Vector3 origin, Vector3 velocity, float influence = 1.0f)
     {
-        Ray ray = new Ray(origin, velocity);
+        Ray ray = new Ray(origin + velocity.normalized * 4.0f, velocity.normalized);
         Vector3 closestPoint = Vector3.zero;
         float closestDis = Mathf.Infinity;
         Debug.DrawRay(ray.origin, velocity.normalized * velocity.magnitude * 0.5f);
-        foreach(RaycastHit hit in Physics.SphereCastAll(ray, 2.0f, velocity.magnitude * 0.5f))
+        foreach(RaycastHit hit in Physics.SphereCastAll(ray, 4.0f, velocity.magnitude * 0.5f))
         {
             if (hit.transform.gameObject.name == "Balloon")
             {
-                float dis = Vector3.Cross(ray.direction, hit.point - ray.origin).sqrMagnitude;
+                float dis = Vector3.Cross(ray.direction, (hit.transform.position - origin).normalized).sqrMagnitude;
                 if (dis < closestDis)
                 {
                     closestDis = dis;
-                    closestPoint = hit.point + Vector3.up * 0.2f;
+                    closestPoint = hit.transform.position + Vector3.up * 0.5f;
                 }
             }
         }
+        Debug.DrawLine(transform.position, closestPoint, Color.white, 2.0f);
         return closestDis == Mathf.Infinity ? velocity : Vector3.Lerp(velocity, (closestPoint - origin).normalized * velocity.magnitude, influence);
     }
 

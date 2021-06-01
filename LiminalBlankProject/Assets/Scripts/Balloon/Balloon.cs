@@ -51,7 +51,7 @@ public class Balloon : MonoBehaviour
     public void Awake()
     {
         this.name = "Balloon";
-        force += new Vector3(transform.localPosition.x, 0f, transform.localPosition.z).normalized * 0.05f;
+        force += new Vector3(transform.localPosition.x, 0f, transform.localPosition.z).normalized * 0.11f;
     }
 
     public void OnPop()

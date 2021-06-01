@@ -71,7 +71,7 @@ public class DartHolder : MonoBehaviour
                 }
                 else if (dart.mode == Dart.Mode.Recall)
                 {
-                    dart.CancelRecall(force.magnitude > 1f ? force : Vector3.zero);
+                    dart.CancelRecall(force.magnitude > 6f ? force : Vector3.zero);
                 }
             }
             else if (down && dart.mode == Dart.Mode.Projectile)
