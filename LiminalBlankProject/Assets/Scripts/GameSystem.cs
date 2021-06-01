@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
+    public static GameSystem singleton;
+
     [SerializeField]
     AmbienceSystem ambience;
     [SerializeField]
@@ -27,6 +29,16 @@ public class GameSystem : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+
+    void Awake()
+    {
+        if (singleton != null) Destroy(this);
+        else
+        {
+            singleton = this;
+        }
+    }
+
     void Start()
     {
         StartCoroutine("MusicIntro");
@@ -38,13 +50,15 @@ public class GameSystem : MonoBehaviour
         {
             Time.timeScale = Mathf.Lerp(Time.timeScale, Input.GetKey(KeyCode.L) ? 10f : 1f, Time.deltaTime * 2f);
             music.pitch = Time.timeScale;
+            if (Input.GetKeyDown(KeyCode.K))
+                music.volume = 0f;
         }
     }
     IEnumerator Ending()
     {
-        while (music.volume > 0.0f)
+        while (ambience.volume < 0.25f)
         {
-            music.volume = Mathf.Max(0f, music.volume - Time.deltaTime * 0.01f);
+            ambience.volume = Mathf.Min(1f, ambience.volume + (Time.deltaTime * 0.2f));
             yield return new WaitForEndOfFrame();
         }
     }

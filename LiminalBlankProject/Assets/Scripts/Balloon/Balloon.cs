@@ -56,6 +56,7 @@ public class Balloon : MonoBehaviour
 
     public void OnPop()
     {
+        Fireworks.singleton.Emit();
         foreach (GameObject particle in popParticles)
         {
             particle.transform.SetParent(MovingMap.transform, true);
