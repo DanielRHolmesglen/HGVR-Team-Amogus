@@ -45,14 +45,15 @@ public class CountDown : MonoBehaviour
         
         if(useEventTimer)       
         {
-            if (minutes <= 0 && seconds <= 5)
+            if (minutes <= 0 && seconds <= 20)
             {
                 timeUp.SetBool("TimeUp", true);
                 TimerEvent.Invoke(); // Used to trigger end of game event.
             }
 
             if (minutes <= 0 && seconds <= 0)
-            {              
+            {
+                timeUp.SetBool("TimeUp", false);
                 totalTime = 0;
             }
         }
