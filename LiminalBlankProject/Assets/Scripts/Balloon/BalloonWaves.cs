@@ -15,35 +15,31 @@ public class BalloonWaves : MonoBehaviour
     {
         //Name of the wave.
         public string name;
-        //Referene to our enemy gameobject.
-        public Transform enemy;
         //Amount of the enemies.
         public int enemyAmount;
         //Rate which the enemies spawn into the map.
         public float spawnRate;
+        //Reference to our enemy transforms.
+        public Transform[] enemies;
     }
     //An array to make separate waves.
     public Wave[] waves;
     //Stores the index of the next wave.
     private int nextWave = 0;
 
-    //Gets the next wave.
-    public int NextWave
-    {
-        get { return nextWave + 1; }
-    }
     //Set objects as spawnpoints.
     public Transform[] spawnPoints;
-    //The time that the player will have between waves to prepare and collect collectibles.
+    //The time that the player will have between waves to prepare.
     public float timeBetweenWaves = 5f;
     //Countdown down between the waves.
     private float waveCountdown;
-    //Time for 
-    private float searchCountdown = 1f;
     //Giving counting spawn state a variable
     private SpawnState state = SpawnState.COUNTING;
-    //
-    void Start()
+
+    [SerializeField]
+    private Transform spawnedTransform;
+
+    void Awake()
     {
         waveCountdown = timeBetweenWaves;
     }
@@ -55,76 +51,54 @@ public class BalloonWaves : MonoBehaviour
         {
             //If our enemy isn't alive then our wave is completed.
             if (!EnemyIsAlive())
-            {
                 WaveCompleted();
-            }
+                if (nextWave == waves.Length)
+                {
+                    enabled = false;
+                    return;
+                }
             else
-            {
                 return;
-            }
 
         }
 
         //If the countdown for the wave has reached 0, start spawning the next wave.
-        if (waveCountdown <= 0)
+        if (waveCountdown <= 0f)
         {
             //If the game is no longer in the counting stage, spawn enemies.
             if (state != SpawnState.SPAWNING)
-            {
                 StartCoroutine(SpawnWave(waves[nextWave]));
-            }
         }
-        else
-        //Otherwise keep counting down.
-        {
+        else //Otherwise keep counting down.
             waveCountdown -= Time.deltaTime;
-        }
     }
 
-    //Moves to the next wave.
+    //Moves to the next wave or disables the script if there are no more waves.
     void WaveCompleted()
     {
         state = SpawnState.COUNTING;
         waveCountdown = timeBetweenWaves;
 
-        //Counts down the waves.
-        if (nextWave + 1 > waves.Length - 1)
-        {
-            nextWave = 0;
-        }
-        else
-        {
-            nextWave++;
-        }
+        //Increment wave index to the next wave.
+        nextWave++;
     }
 
     //Checking if an enemy is alive.
     bool EnemyIsAlive()
     {
-
-        searchCountdown -= Time.deltaTime;
-        //If our countdown reaches 0, wait a second spawn enemies.
-        if (searchCountdown <= 0f)
-        {
-            searchCountdown = 1f;
-            //If there are no objects with the tag enemy then 
-            if (GameObject.FindGameObjectWithTag("Enemy") == null)
-            {
-                return false;
-            }
-        }
-        return true;
+        return spawnedTransform.Find("Balloon") != null;
     }
 
     //Spawn enemy and wait.
-    IEnumerator SpawnWave(Wave _wave)
+    IEnumerator SpawnWave(Wave wave)
     {
         state = SpawnState.SPAWNING;
 
-        for (int i = 0; i < _wave.enemyAmount; i++)
+        for (int i = 0; i < wave.enemyAmount; i++)
         {
-            SpawnEnemy(_wave.enemy);
-            yield return new WaitForSeconds(1f / _wave.spawnRate);
+            int randI = Random.Range(0, wave.enemies.Length);
+            SpawnEnemy(wave.enemies[randI]);
+            yield return new WaitForSeconds(1f / wave.spawnRate);
         }
 
         state = SpawnState.WAITING;
@@ -133,9 +107,9 @@ public class BalloonWaves : MonoBehaviour
     }
 
     //When called spawns the enemy at assigned spawnpoints.
-    void SpawnEnemy(Transform _enemy)
+    void SpawnEnemy(Transform enemy)
     {
-        Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(_enemy, _sp.position, _sp.rotation);
+        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(enemy, sp.position, sp.rotation, spawnedTransform);
     }
 }

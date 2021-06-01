@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1933470435144330922}
   - component: {fileID: 2409479398387395511}
+  - component: {fileID: 3386326368459453023}
   - component: {fileID: 5593990441907676936}
   m_Layer: 0
   m_Name: DartHolder
@@ -45,10 +46,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44422b43c9bc65744ba57b0f451d98e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useSecondaryDevice: 0
-  throwButton: ButtonOne
+  input: {fileID: 3386326368459453023}
   dart: {fileID: 5022384271083550065}
   controller: {fileID: 0}
+--- !u!114 &3386326368459453023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680042585333601479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36d460da4e422c419ace64183741eba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: ButtonOne
+  useSecondaryDevice: 0
 --- !u!82 &5593990441907676936
 AudioSource:
   m_ObjectHideFlags: 0
@@ -361,7 +375,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 91d95580a3374b049bf4480bb14fa990, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -370,9 +384,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 5
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -457,7 +471,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 790006588a31ad24f97b8773627f94da, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -466,9 +480,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 5
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5000
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0

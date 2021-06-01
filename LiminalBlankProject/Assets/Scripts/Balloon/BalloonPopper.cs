@@ -30,10 +30,13 @@ public class BalloonPopper : MonoBehaviour
     [SerializeField]
     UnityEvent popEnded;
 
+    public bool hasPopped = false;
+
     float popping = 0.0f;
     public void Pop()
     {
         popping = 0f;
+        hasPopped = true;
         this.enabled = true;
         fragmentedMesh.enabled = true;
         collider.enabled = false;
