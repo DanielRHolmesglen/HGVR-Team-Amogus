@@ -42,15 +42,18 @@ public class CountDown : MonoBehaviour
         minutes = (int)(totalTime / 60);
         seconds = (int)(totalTime % 60);
 
-        if(useEventTimer)
+        
+        if(useEventTimer)       
         {
-            //Triggers an event once the time is up
-            if(minutes<=0 && seconds <=0)
+            if (minutes <= 0 && seconds <= 5)
             {
                 timeUp.SetBool("TimeUp", true);
-                totalTime = 0;                
                 TimerEvent.Invoke(); // Used to trigger end of game event.
+            }
 
+            if (minutes <= 0 && seconds <= 0)
+            {              
+                totalTime = 0;
             }
         }
 
