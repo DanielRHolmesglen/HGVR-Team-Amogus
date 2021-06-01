@@ -20079,7 +20079,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.15
   far clip plane: 2000
   field of view: 60
   orthographic: 0
@@ -20436,7 +20436,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.15
   far clip plane: 2000
   field of view: 60
   orthographic: 0
@@ -20736,7 +20736,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.15
   far clip plane: 2000
   field of view: 60
   orthographic: 0
@@ -21830,7 +21830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe2fe0f0e415a34cafd9b75a7ca86b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: 0.2, y: 0.2, z: 0.2}
+  rotation: {x: 0.04, y: 0.04, z: 0.04}
 --- !u!1 &8296172667639608100
 GameObject:
   m_ObjectHideFlags: 0
