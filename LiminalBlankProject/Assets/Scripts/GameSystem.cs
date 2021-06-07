@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Liminal.Experience;
 public class GameSystem : MonoBehaviour
 {
     public static GameSystem singleton;
@@ -100,6 +100,9 @@ public class GameSystem : MonoBehaviour
             ambience.volume = Mathf.Min(1f, ambience.volume + (Time.deltaTime * 0.2f));
             yield return new WaitForEndOfFrame();
         }
+        yield return new WaitForSecondsRealtime(22.0f);
+        Time.timeScale = 1.0f;
+        MyExperienceApp.End();
     }
     public void MapLanded()
     {

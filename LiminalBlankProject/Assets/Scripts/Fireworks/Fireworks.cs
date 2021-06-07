@@ -18,7 +18,7 @@ public class Fireworks : MonoBehaviour
         fireworkParticles[Random.Range(0, fireworkParticles.Length)].Emit(1);
     }
 
-    IEnumerator Celebration()
+    public IEnumerator Celebration()
     {
         for (int i = 0; i != 100; ++i) {
             Emit();
