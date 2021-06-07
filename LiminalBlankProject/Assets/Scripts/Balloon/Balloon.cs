@@ -19,6 +19,8 @@ public class Balloon : MonoBehaviour
     [SerializeField]
     bool immuneToIce = false;
 
+    public bool immuneToBlast = false;
+
     public Vector3 force = Vector3.up;
     private Vector3 temporaryForce = Vector3.zero;
     public float lifetime = 40.0f;
@@ -57,7 +59,7 @@ public class Balloon : MonoBehaviour
 
     public void OnPop()
     {
-        ScoreTracker.singleton.score += scoreOnPop;
+        ScoreTracker.singleton.AddScore(scoreOnPop, transform.position + Vector3.up * 0.5f);
         Fireworks.singleton.Emit();
         foreach (GameObject particle in popParticles)
         {

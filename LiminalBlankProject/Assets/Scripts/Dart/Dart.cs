@@ -32,6 +32,8 @@ public class Dart : MonoBehaviour
     [SerializeField]
     LineRenderer dartTrail;
 
+    public static float timeScale = 1.0f;
+
     float timeInAir = 0.0f;
     float drag = 0.01f;
     Vector3 velocity;
@@ -246,6 +248,7 @@ public class Dart : MonoBehaviour
 
     public void LateUpdate()
     {
+        float dt = Time.deltaTime * timeScale;
         if (mode != Mode.Held)
         {
             dartTrail.endWidth = 0.005f * Vector3.Distance(transform.position, holder.GetDartPosition());
@@ -253,8 +256,8 @@ public class Dart : MonoBehaviour
 
         if (mode == Mode.Recall)
         {
-            timeInAir = Mathf.Max(0f, timeInAir - Time.deltaTime);
-            timePosition = Mathf.Max(0f, timePosition - (Time.deltaTime * recallSpeed));
+            timeInAir = Mathf.Max(0f, timeInAir - dt);
+            timePosition = Mathf.Max(0f, timePosition - (dt * recallSpeed));
             if (timePosition > 0f && timeline.Count > 0)
             {
                 TimePoint point = GetTimePoint(timePosition);
@@ -280,16 +283,16 @@ public class Dart : MonoBehaviour
         }
         else if (mode == Mode.Projectile)
         {
-            timeInAir += Time.deltaTime;
+            timeInAir += dt;
             if (timeInAir > 30f) inactive = true;
             if (!inactive)
             {
-                velocity += Vector3.down * 4f * Time.deltaTime;
-                velocity *= 1f - drag * Mathf.Min(1f, Time.deltaTime);
+                velocity += Vector3.down * 4f * dt;
+                velocity *= 1f - drag * Mathf.Min(1f, dt);
                 Ray ray = new Ray(transform.position, velocity.normalized);
                 RaycastHit hitInfo;
-                bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * Time.deltaTime * 2f);
-                Vector3 newPosition = hit ? hitInfo.point + velocity.normalized * 0.001f : transform.position + velocity * Time.deltaTime;
+                bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * dt * 2f);
+                Vector3 newPosition = hit ? hitInfo.point + velocity.normalized * 0.001f : transform.position + velocity * dt;
                 transform.position = newPosition;
                 if (hit && !HitIfBalloon(hitInfo))
                 {
@@ -301,9 +304,9 @@ public class Dart : MonoBehaviour
                 {
                     if (velocity.sqrMagnitude != 0f)
                     {
-                        float t = Mathf.Min(1f, velocity.magnitude) * Time.deltaTime * 50f;
+                        float t = Mathf.Min(1f, velocity.magnitude) * dt * 50f;
                         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(velocity, transform.up), t);
-                        transform.Rotate(0f, 0f, Time.deltaTime * 360f, Space.Self);
+                        transform.Rotate(0f, 0f, dt * 360f, Space.Self);
                     }
                 }
                 if (timeline.Count > 0)
@@ -315,8 +318,8 @@ public class Dart : MonoBehaviour
         }
         else if (mode == Mode.Held)
         {
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * 6f);
-            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * 6f);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, dt * 6f);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, dt * 6f);
         }
     }
 }

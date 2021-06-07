@@ -16,15 +16,25 @@ public class ScoreDisplay : MonoBehaviour
     AudioClip celebrationSound;
     [SerializeField]
     Rigidbody rigidBody;
+
+    int hits = 0;
+    void Awake()
+    {
+        transform.localScale = Vector3.forward;
+        gameObject.SetActive(false);
+    }
+
     void Update()
     {
         transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime);
     }
-
     public void Knockout()
     {
-        rigidBody.isKinematic = false;
-        rigidBody.AddForce(Vector3.forward, ForceMode.VelocityChange);
+        if (++hits >= 2)
+        {
+            rigidBody.isKinematic = false;
+            rigidBody.AddForce(Vector3.forward, ForceMode.VelocityChange);
+        }
     }
 
     IEnumerator ShowScore()

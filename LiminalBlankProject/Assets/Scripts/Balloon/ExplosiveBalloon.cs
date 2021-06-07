@@ -6,7 +6,8 @@ public class ExplosiveBalloon : MonoBehaviour
 {
     public virtual void Hit(Balloon balloon)
     {
-        balloon.Damage();
+        if (!balloon.immuneToBlast)
+            balloon.Damage();
     }
 
     void Explode(Vector3 origin, float radius)

@@ -21,7 +21,7 @@ public class DartHolder : MonoBehaviour
     Vector3[] velocityAvg = new Vector3[6];
 
     float debugOffset;
-    void StoreVelocity()
+    void StoreVelocity(float dt)
     {
         Quaternion rotation = transform.rotation;
         Vector3 position = transform.TransformPoint(rotation * Quaternion.Inverse(lastRotation) * GetDartOffset());
@@ -31,15 +31,16 @@ public class DartHolder : MonoBehaviour
             velocityAvg[i - 1] = velocityAvg[i];
 
         Vector3 offset = position - lastPosition;
-        velocityAvg[velocityAvg.Length - 1] = offset / Time.deltaTime;
+        velocityAvg[velocityAvg.Length - 1] = offset / dt;
         lastPosition = position;
         lastRotation = rotation;
     }
     public void LateUpdate()
     {
-        StoreVelocity();
+        float dt = Time.deltaTime * Dart.timeScale;
+        StoreVelocity(dt);
         bool held = dart.mode == Dart.Mode.Held;
-        debugOffset = Mathf.Clamp(debugOffset + Time.deltaTime * (held && Input.GetKey(input.useSecondaryDevice ? KeyCode.R : KeyCode.E) ? 3f : -3f), 0f, 1f);
+        debugOffset = Mathf.Clamp(debugOffset + dt * (held && Input.GetKey(input.useSecondaryDevice ? KeyCode.R : KeyCode.E) ? 3f : -3f), 0f, 1f);
         debugDartPosition = Vector3.forward * Mathf.Sqrt(debugOffset);
 
         if (held)

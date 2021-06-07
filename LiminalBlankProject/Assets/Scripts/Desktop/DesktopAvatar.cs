@@ -25,7 +25,7 @@ public class DesktopAvatar : MonoBehaviour
 
         head.transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
 
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, Input.GetKey(KeyCode.V) ? 50f : 80f, Time.deltaTime * 6f);
+        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, Input.GetKey(KeyCode.V) ? 50f : 80f, Time.unscaledDeltaTime * 6f);
 
         Vector3 moveDirection = Vector3.zero;
         if (Input.GetKey(KeyCode.W)) moveDirection += Vector3.forward;
@@ -33,7 +33,7 @@ public class DesktopAvatar : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) moveDirection += Vector3.back;
         if (Input.GetKey(KeyCode.D)) moveDirection += Vector3.right;
         moveDirection = head.transform.TransformVector(moveDirection);
-        controller.Move(new Vector3(moveDirection.x, 0f, moveDirection.z).normalized * Time.deltaTime * 4f);
+        controller.Move(new Vector3(moveDirection.x, 0f, moveDirection.z).normalized * Time.unscaledDeltaTime * 4f);
     }
 
     void LateUpdate()
