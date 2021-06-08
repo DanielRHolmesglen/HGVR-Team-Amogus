@@ -19,10 +19,13 @@ public class Balloon : MonoBehaviour
     [SerializeField]
     bool immuneToIce = false;
 
+    public bool immuneToBlast = false;
+
     public Vector3 force = Vector3.up;
     private Vector3 temporaryForce = Vector3.zero;
     public float lifetime = 40.0f;
     public int health = 1;
+    public int scoreOnPop = 100;
 
     float hitCooldown = 0.0f;
 
@@ -35,6 +38,7 @@ public class Balloon : MonoBehaviour
 
     IEnumerator Iced()
     {
+        source.pitch = GameSystem.singleton.timeScale;
         source.PlayOneShot(icedSounds[Random.Range(0, icedSounds.Length)]);
         icedParticles.Play();
         lifetime += 8.0f;
@@ -51,11 +55,13 @@ public class Balloon : MonoBehaviour
     public void Awake()
     {
         this.name = "Balloon";
-        force += new Vector3(transform.localPosition.x, 0f, transform.localPosition.z).normalized * 0.05f;
+        force += new Vector3(transform.localPosition.x, 0f, transform.localPosition.z).normalized * 0.11f;
     }
 
     public void OnPop()
     {
+        ScoreTracker.singleton.AddScore(scoreOnPop, transform.position + Vector3.up * 0.5f);
+        Fireworks.singleton.Emit();
         foreach (GameObject particle in popParticles)
         {
             particle.transform.SetParent(MovingMap.transform, true);
@@ -76,9 +82,9 @@ public class Balloon : MonoBehaviour
         if (--health == 0)
         {
             popper.Pop();
-        } else
-        {
-            source?.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length)]);
+        } else if (source) {
+            source.pitch = GameSystem.singleton.timeScale;
+            source.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length)]);
         }
     }
 

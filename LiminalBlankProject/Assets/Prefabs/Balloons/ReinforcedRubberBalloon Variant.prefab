@@ -375,6 +375,10 @@ PrefabInstance:
       propertyPath: health
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 536335378, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
+      propertyPath: scoreOnPop
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 6751998811314810564, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: scaleRange.x
@@ -387,13 +391,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6751998811314810564, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
-      propertyPath: speedRange.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6751998811314810564, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
       propertyPath: speedRange.y
-      value: 0.5
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 395809078182788220, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
