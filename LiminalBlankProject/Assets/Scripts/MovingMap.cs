@@ -12,7 +12,8 @@ public class MovingMap : MonoBehaviour
     private Vector3 finalDestination = Vector3.zero;
     [SerializeField]
     private float timeToDestination = 160.0f;
-
+    [SerializeField]
+    AnimationCurve movementCurve;
     [SerializeField]
     private UnityEvent finishedMoving;
 
@@ -29,7 +30,7 @@ public class MovingMap : MonoBehaviour
     {
         bool moving = progress < 1f;
         progress = Mathf.Min(1f, progress + Time.deltaTime / timeToDestination);
-        transform.position = Vector3.Lerp(startPosition, finalDestination, Mathf.Sqrt(progress));
+        transform.position = Vector3.Lerp(startPosition, finalDestination, movementCurve.Evaluate(progress));
         if (progress == 1f && moving)
             finishedMoving?.Invoke();
     }
