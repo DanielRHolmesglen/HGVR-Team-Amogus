@@ -38,6 +38,7 @@ public class Balloon : MonoBehaviour
 
     IEnumerator Iced()
     {
+        source.pitch = GameSystem.singleton.timeScale;
         source.PlayOneShot(icedSounds[Random.Range(0, icedSounds.Length)]);
         icedParticles.Play();
         lifetime += 8.0f;
@@ -81,9 +82,9 @@ public class Balloon : MonoBehaviour
         if (--health == 0)
         {
             popper.Pop();
-        } else
-        {
-            source?.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length)]);
+        } else if (source) {
+            source.pitch = GameSystem.singleton.timeScale;
+            source.PlayOneShot(damageSounds[Random.Range(0, damageSounds.Length)]);
         }
     }
 

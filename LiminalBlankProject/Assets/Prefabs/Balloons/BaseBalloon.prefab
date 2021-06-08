@@ -193,9 +193,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9ce990acdca20b849bd8d75b4c261f19, type: 3}
   icedParticles: {fileID: 4744537435231459200}
   immuneToIce: 0
+  immuneToBlast: 0
   force: {x: 0, y: 1, z: 0}
   lifetime: 40
   health: 1
+  scoreOnPop: 100
 --- !u!114 &2986739233441380763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +281,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 836da93a8a760824db828e5093ead357, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

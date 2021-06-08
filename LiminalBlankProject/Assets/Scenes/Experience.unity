@@ -25392,6 +25392,7 @@ MonoBehaviour:
   ambience: {fileID: 5277066}
   music: {fileID: 588538056}
   logo: {fileID: 135965312}
+  timeScale: 1
   clockStopSound: {fileID: 8300000, guid: 37e01f08b0afaf24fb4029b3411ff0d7, type: 3}
   clockStartSound: {fileID: 8300000, guid: cc7fb0dccf3525f4d8580cf8658ea17a, type: 3}
   source: {fileID: 1757455339}

@@ -45,7 +45,7 @@ public class BalloonPopper : MonoBehaviour
 
         if (popSoundPool.Length != 0)
         {
-            audioSource.pitch = Random.Range(1.1f, 1.3f);
+            audioSource.pitch = Random.Range(1.1f, 1.3f) * GameSystem.singleton.timeScale;
             audioSource.PlayOneShot(popSoundPool[Random.Range(0, popSoundPool.Length)]);
         }
         popped?.Invoke();

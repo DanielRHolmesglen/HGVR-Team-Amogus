@@ -7,6 +7,7 @@ public class RandomAudio : MonoBehaviour
     [SerializeField]
     AudioSource[] sources;
 
+    AudioSource lastSource;
     public float timeBetweenSounds = 10.0f;
 
     float timer = 0.0f;
@@ -17,7 +18,9 @@ public class RandomAudio : MonoBehaviour
         if (timer <= 0.0f)
         {
             timer = timeBetweenSounds;
-            sources[Random.Range(0, sources.Length)].Play();
+            lastSource = sources[Random.Range(0, sources.Length)];
+            lastSource.Play();
         }
+        if (lastSource) lastSource.pitch = GameSystem.singleton.timeScale;
     }
 }

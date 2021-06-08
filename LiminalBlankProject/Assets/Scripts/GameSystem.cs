@@ -16,7 +16,7 @@ public class GameSystem : MonoBehaviour
 
     float debugTimescale = 1.0f;
     float targetTimeScale = 1.0f;
-    float timeScale = 1.0f;
+    public float timeScale = 1.0f;
 
     float timeSlowDuration = 0.0f;
     [SerializeField]
