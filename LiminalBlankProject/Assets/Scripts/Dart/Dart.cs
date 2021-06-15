@@ -109,7 +109,7 @@ public class Dart : MonoBehaviour
                 if (dot < closestDot)
                 {
                     closestDot = dot;
-                    closestPoint = hit.transform.position + Vector3.up * 0.25f;
+                    closestPoint = hit.transform.position + Vector3.up * 0.6f;
                 }
             }
         }
