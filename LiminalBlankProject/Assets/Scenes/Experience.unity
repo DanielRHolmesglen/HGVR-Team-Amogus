@@ -37253,6 +37253,7 @@ GameObject:
   - component: {fileID: 7718390322443753051}
   - component: {fileID: 8296172667514430089}
   - component: {fileID: 8296172667514430090}
+  - component: {fileID: 8296172667514430088}
   m_Layer: 0
   m_Name: WinnerBalloon
   m_TagString: Untagged
@@ -37260,6 +37261,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &8296172667514430088
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296172667514430087}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: -5872499089983269958, guid: ec67938aa7becbb4fbd42db090783406, type: 3}
 --- !u!114 &8296172667514430089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37272,7 +37287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d26c4f457f85a468ce8e718d0d1dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 0}
+  collider: {fileID: 8296172667514430088}
   normalMesh: {fileID: 7718390322443753051}
   fragmentedMesh: {fileID: 687867057}
   fragmentedTransform: {fileID: 5006512736475435156}
