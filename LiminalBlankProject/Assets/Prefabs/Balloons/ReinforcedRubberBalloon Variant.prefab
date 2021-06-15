@@ -247,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 6874929112362231500, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: m_Name
-      value: ReinforcedRubberBalloon
+      value: ReinforcedRubberBalloon Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7580682159929775327, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
@@ -304,6 +304,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7580682161342740042, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 395809078182788220, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 536335378, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
       propertyPath: popParticles.Array.size
       value: 2
@@ -351,6 +361,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
+      propertyPath: popParticles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
       propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 8516189500327137002}
@@ -374,6 +389,16 @@ PrefabInstance:
       propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.data[0]
+      value: 
+      objectReference: {fileID: 3605613702377006324}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1246217138540708894}
     - target: {fileID: 6751998811314810564, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: scaleRange.x
@@ -388,16 +413,6 @@ PrefabInstance:
         type: 3}
       propertyPath: speedRange.y
       value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7580682161342740042, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 395809078182788220, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b998ceb7084c19546a67b1d395e55213, type: 3}

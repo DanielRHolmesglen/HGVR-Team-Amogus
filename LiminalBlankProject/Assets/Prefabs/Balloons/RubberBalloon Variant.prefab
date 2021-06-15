@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 6874929112362231500, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: m_Name
-      value: RubberBalloon
+      value: RubberBalloon Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7580682159929775327, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
@@ -239,6 +239,21 @@ PrefabInstance:
       propertyPath: popParticles.Array.data[1]
       value: 
       objectReference: {fileID: 7222646072026854270}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.data[0]
+      value: 
+      objectReference: {fileID: 7222646072026854270}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 7464613979839319646}
     - target: {fileID: 6751998811314810564, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: speedRange.x
