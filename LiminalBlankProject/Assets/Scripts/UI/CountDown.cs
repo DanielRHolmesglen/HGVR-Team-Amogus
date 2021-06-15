@@ -58,7 +58,7 @@ public class CountDown : MonoBehaviour
             }
         }
 
-        CountDownText.text = minutes.ToString() + ":" + seconds.ToString();
+        CountDownText.text = minutes.ToString() + ":" + seconds.ToString("00");
     }
 }
 
