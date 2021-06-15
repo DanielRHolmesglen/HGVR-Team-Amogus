@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Liminal.Experience;
 public class GameSystem : MonoBehaviour
 {
@@ -25,6 +26,13 @@ public class GameSystem : MonoBehaviour
     AudioClip clockStartSound;
     [SerializeField]
     AudioSource source;
+
+    float dartElectricTime = 0.0f;
+    public delegate void ElectricityChanged(bool state);
+    public ElectricityChanged electricityChanged;
+
+    [SerializeField]
+    Material dartTrailMaterial;
     IEnumerator MusicIntro()
     {
         yield return new WaitForSeconds(5f);
@@ -73,12 +81,29 @@ public class GameSystem : MonoBehaviour
             }
         }
 
+        Dart.electricity = Mathf.Clamp(Dart.electricity + (dartElectricTime > 0.0f ? Time.deltaTime : -Time.deltaTime) * 2.0f, 0.0f, 1.0f);
+        if (dartElectricTime > 0.0f)
+        {
+            dartElectricTime -= Time.unscaledDeltaTime;
+            if (dartElectricTime <= 0.0f)
+            {
+                electricityChanged?.Invoke(false);
+            }
+        }
+        dartTrailMaterial.SetFloat("_Electricity", Dart.electricity);
+
         timeScale = Mathf.Lerp(timeScale, targetTimeScale, Time.deltaTime * 4f);
 
         //debug timeScale must not be factored in for dart time scale correction
         float realTimeScale = timeScale * debugTimescale;
         Time.timeScale = realTimeScale;
         if (timeScale > 0.0f) Dart.timeScale = 1f / timeScale;
+    }
+
+    public void ElectrocuteDart(float time = 10.0f)
+    {
+        electricityChanged?.Invoke(true);
+        dartElectricTime += time;
     }
 
     public void DoSlowTime(float timeScale = 0.5f, float duration = 5.0f)

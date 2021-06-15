@@ -38,6 +38,7 @@ public class Dart : MonoBehaviour
     float drag = 0.01f;
     Vector3 velocity;
     bool inactive;
+    public static float electricity = 0.0f;
 
     private static readonly Vector3 endOffset = new Vector3(0f, 0f, -0.3651232f);
     private static readonly float recallSpeed = 1.9f;
@@ -67,6 +68,8 @@ public class Dart : MonoBehaviour
     
     void Awake()
     {
+        timeScale = 1.0f;
+        electricity = 0.0f;
         timeline = new List<TimePoint>();
         initialTransform = new TimePoint(transform.localRotation, transform.localPosition, transform.localScale, Vector3.zero);
         timelineLimit = (int)(30f / Time.fixedDeltaTime);
@@ -74,8 +77,15 @@ public class Dart : MonoBehaviour
 
     void Start()
     {
+        GameSystem.singleton.electricityChanged += ElectricityChanged;
         dartTrail.startWidth = 0.0025f;
         dartTrail.endWidth = 0.005f;
+    }
+
+    void ElectricityChanged(bool state)
+    {
+        dartTrail.startWidth = state ? 0.0075f : 0.0025f;
+        dartTrail.endWidth = state ? 0.025f : 0.005f;
     }
 
     TimePoint MakeTimePoint()
@@ -294,11 +304,16 @@ public class Dart : MonoBehaviour
                 bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * dt * 2f);
                 Vector3 newPosition = hit ? hitInfo.point + velocity.normalized * 0.001f : transform.position + velocity * dt;
                 transform.position = newPosition;
-                if (hit && !HitIfBalloon(hitInfo))
+                if (hit)
                 {
-                    audio.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
-                    hitInfo.transform.GetComponent<DartTarget>()?.Trigger();
-                    inactive = true;
+                    if (HitIfBalloon(hitInfo)) {
+                        if (electricity > 0.5f)
+                            velocity = PointTowardsBalloon(newPosition, velocity, 1f);
+                    } else {
+                        audio.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
+                        hitInfo.transform.GetComponent<DartTarget>()?.Trigger();
+                        inactive = true;
+                    }
                 }
                 else
                 {
