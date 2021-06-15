@@ -17,6 +17,8 @@ public class BalloonPopper : MonoBehaviour
     Transform fragmentedTransform;
 
     [SerializeField]
+    GameObject[] popParticles;
+    [SerializeField]
     AudioClip[] popSoundPool;
     [SerializeField]
     AudioSource audioSource;
@@ -47,6 +49,12 @@ public class BalloonPopper : MonoBehaviour
         {
             audioSource.pitch = Random.Range(1.1f, 1.3f) * GameSystem.singleton.timeScale;
             audioSource.PlayOneShot(popSoundPool[Random.Range(0, popSoundPool.Length)]);
+        }
+        foreach (GameObject particle in popParticles)
+        {
+            particle.transform.SetParent(MovingMap.transform, true);
+            particle.SetActive(true);
+            Destroy(particle, 10.0f);
         }
         popped?.Invoke();
     }

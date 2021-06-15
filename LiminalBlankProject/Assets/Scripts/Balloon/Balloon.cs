@@ -5,9 +5,7 @@ using UnityEngine;
 public class Balloon : MonoBehaviour
 {
     public BalloonPopper popper;
-    [SerializeField]
-    GameObject[] popParticles;
-
+   
     [SerializeField]
     AudioSource source;
     [SerializeField]
@@ -62,12 +60,6 @@ public class Balloon : MonoBehaviour
     {
         ScoreTracker.singleton.AddScore(scoreOnPop, transform.position + Vector3.up * 0.5f);
         Fireworks.singleton.Emit();
-        foreach (GameObject particle in popParticles)
-        {
-            particle.transform.SetParent(MovingMap.transform, true);
-            particle.SetActive(true);
-            Destroy(particle, 10.0f);
-        }
     }
 
     public void OnPopEnded()

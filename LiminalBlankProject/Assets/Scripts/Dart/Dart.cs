@@ -38,6 +38,7 @@ public class Dart : MonoBehaviour
     float drag = 0.01f;
     Vector3 velocity;
     bool inactive;
+    public static float electricity = 0.0f;
 
     private static readonly Vector3 endOffset = new Vector3(0f, 0f, -0.3651232f);
     private static readonly float recallSpeed = 1.9f;
@@ -56,8 +57,6 @@ public class Dart : MonoBehaviour
         }
     }
 
-    float heldScaleFactor = 1.0f;
-
     TimePoint initialTransform;
     List<TimePoint> timeline;
     float timePosition;
@@ -67,6 +66,8 @@ public class Dart : MonoBehaviour
     
     void Awake()
     {
+        timeScale = 1.0f;
+        electricity = 0.0f;
         timeline = new List<TimePoint>();
         initialTransform = new TimePoint(transform.localRotation, transform.localPosition, transform.localScale, Vector3.zero);
         timelineLimit = (int)(30f / Time.fixedDeltaTime);
@@ -74,8 +75,15 @@ public class Dart : MonoBehaviour
 
     void Start()
     {
+        GameSystem.singleton.electricityChanged += ElectricityChanged;
         dartTrail.startWidth = 0.0025f;
         dartTrail.endWidth = 0.005f;
+    }
+
+    void ElectricityChanged(bool state)
+    {
+        dartTrail.startWidth = state ? 0.0075f : 0.0025f;
+        dartTrail.endWidth = state ? 0.025f : 0.005f;
     }
 
     TimePoint MakeTimePoint()
@@ -97,29 +105,29 @@ public class Dart : MonoBehaviour
 
     public Vector3 PointTowardsBalloon(Vector3 origin, Vector3 velocity, float influence = 1.0f)
     {
-        Ray ray = new Ray(origin + velocity.normalized * 4.0f, velocity.normalized);
+        Ray ray = new Ray(origin, velocity);
         Vector3 closestPoint = Vector3.zero;
-        float closestDis = Mathf.Infinity;
+        float closestDot = Mathf.Infinity;
         Debug.DrawRay(ray.origin, velocity.normalized * velocity.magnitude * 0.5f);
-        foreach(RaycastHit hit in Physics.SphereCastAll(ray, 4.0f, velocity.magnitude * 0.5f))
+        foreach(RaycastHit hit in Physics.SphereCastAll(ray, 4.0f, velocity.magnitude))
         {
             if (hit.transform.gameObject.name == "Balloon")
             {
-                float dis = Vector3.Cross(ray.direction, (hit.transform.position - origin).normalized).sqrMagnitude;
-                if (dis < closestDis)
+                float dot = Vector3.Dot(ray.direction, (origin - hit.transform.position).normalized);
+                if (dot < closestDot)
                 {
-                    closestDis = dis;
-                    closestPoint = hit.transform.position + Vector3.up * 0.5f;
+                    closestDot = dot;
+                    closestPoint = hit.transform.position + Vector3.up * 0.6f;
                 }
             }
         }
         Debug.DrawLine(transform.position, closestPoint, Color.white, 2.0f);
-        return closestDis == Mathf.Infinity ? velocity : Vector3.Lerp(velocity, (closestPoint - origin).normalized * velocity.magnitude, influence);
+        return closestDot == Mathf.Infinity ? velocity : Vector3.Lerp(velocity, (closestPoint - origin).normalized * velocity.magnitude, influence);
     }
 
     public void Throw(Vector3 force)
     {
-        force = PointTowardsBalloon(transform.position, force, 0.6f);
+        force = PointTowardsBalloon(transform.position, force, 0.75f);
         transform.SetParent(MovingMap.transform);
         mode = Mode.Projectile;
         inactive = false;
@@ -138,7 +146,7 @@ public class Dart : MonoBehaviour
         mode = Mode.Projectile;
         Vector3 oldVelocity = GetTimePoint(timePosition).velocity;
         bool keepOld = newForce == Vector3.zero;
-        velocity = PointTowardsBalloon(transform.position, keepOld ? oldVelocity : newForce);
+        velocity = PointTowardsBalloon(transform.position, keepOld ? oldVelocity : newForce, 0.9f);
         if (!keepOld)
             timeline.RemoveRange(0, timeline.Count - 1);
         else {
@@ -294,11 +302,16 @@ public class Dart : MonoBehaviour
                 bool hit = Physics.Raycast(ray, out hitInfo, velocity.magnitude * dt * 2f);
                 Vector3 newPosition = hit ? hitInfo.point + velocity.normalized * 0.001f : transform.position + velocity * dt;
                 transform.position = newPosition;
-                if (hit && !HitIfBalloon(hitInfo))
+                if (hit)
                 {
-                    audio.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
-                    hitInfo.transform.GetComponent<DartTarget>()?.Trigger();
-                    inactive = true;
+                    if (HitIfBalloon(hitInfo)) {
+                        if (electricity > 0.5f)
+                            velocity = PointTowardsBalloon(newPosition, velocity, 1f);
+                    } else {
+                        audio.PlayOneShot(hitSounds[Random.Range(0, hitSounds.Length)], Mathf.Min(1f, velocity.magnitude * 0.25f));
+                        hitInfo.transform.GetComponent<DartTarget>()?.Trigger();
+                        inactive = true;
+                    }
                 }
                 else
                 {

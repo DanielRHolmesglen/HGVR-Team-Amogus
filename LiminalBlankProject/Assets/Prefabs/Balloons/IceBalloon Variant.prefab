@@ -19,6 +19,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2852855544215842174}
     m_Modifications:
+    - target: {fileID: 230790892352728660, guid: e5746e33458598b43ad0a2152a74b877,
+        type: 3}
+      propertyPath: m_Name
+      value: Snow
+      objectReference: {fileID: 0}
+    - target: {fileID: 230790892352728660, guid: e5746e33458598b43ad0a2152a74b877,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 230790892352728667, guid: e5746e33458598b43ad0a2152a74b877,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -74,16 +84,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -179.99998
       objectReference: {fileID: 0}
-    - target: {fileID: 230790892352728660, guid: e5746e33458598b43ad0a2152a74b877,
-        type: 3}
-      propertyPath: m_Name
-      value: Snow
-      objectReference: {fileID: 0}
-    - target: {fileID: 230790892352728660, guid: e5746e33458598b43ad0a2152a74b877,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5746e33458598b43ad0a2152a74b877, type: 3}
 --- !u!1 &3376479756375006658 stripped
@@ -102,7 +102,7 @@ PrefabInstance:
     - target: {fileID: 6874929112362231500, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: m_Name
-      value: IceBalloon
+      value: IceBalloon Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7580682159929775327, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
@@ -164,41 +164,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 744bfc1306a549347bfe3f9ba6bc0297, type: 2}
-    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: popped.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: randomizeRotation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 2374708513309164908}
-    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnPop
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
-        type: 3}
-      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 536335378, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
       propertyPath: popParticles.Array.size
       value: 1
@@ -227,11 +192,51 @@ PrefabInstance:
       propertyPath: scoreOnPop
       value: 200
       objectReference: {fileID: 0}
-    - target: {fileID: 827434410171346009, guid: b998ceb7084c19546a67b1d395e55213,
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: popped.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2100000, guid: 744bfc1306a549347bfe3f9ba6bc0297, type: 2}
+      objectReference: {fileID: 2374708513309164908}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnPop
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.data[0]
+      value: 
+      objectReference: {fileID: 3376479756375006658}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6751998811314810564, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: scaleRange.x
@@ -252,6 +257,11 @@ PrefabInstance:
       propertyPath: randomizeColor
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 827434410171346009, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 744bfc1306a549347bfe3f9ba6bc0297, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
 --- !u!1 &1282462496202678125 stripped
