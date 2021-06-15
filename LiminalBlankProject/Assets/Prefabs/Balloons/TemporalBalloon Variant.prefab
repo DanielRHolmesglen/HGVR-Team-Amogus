@@ -95,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 536335378, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
       propertyPath: popParticles.Array.data[1]
       value: 
-      objectReference: {fileID: 2141190027949557347}
+      objectReference: {fileID: 0}
     - target: {fileID: 536335378, guid: b998ceb7084c19546a67b1d395e55213, type: 3}
       propertyPath: immuneToBlast
       value: 1
@@ -113,7 +113,7 @@ PrefabInstance:
     - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: popParticles.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
@@ -159,7 +159,7 @@ PrefabInstance:
         type: 3}
       propertyPath: popParticles.Array.data[0]
       value: 
-      objectReference: {fileID: 2141190027949557347}
+      objectReference: {fileID: 8557522879758295067}
     - target: {fileID: 6751998811314810564, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: scaleRange.x
@@ -203,46 +203,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7580682159929775327, guid: b998ceb7084c19546a67b1d395e55213,
     type: 3}
   m_PrefabInstance: {fileID: 3986233505252652181}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &7400646494155969400
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6801011591783997514}
-    m_Modifications:
-    - target: {fileID: 8864043093484295451, guid: b92a0136f9a55774d930f8f154b6ae0f,
-        type: 3}
-      propertyPath: m_Name
-      value: Stars
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864043093484295526, guid: b92a0136f9a55774d930f8f154b6ae0f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864043093484295526, guid: b92a0136f9a55774d930f8f154b6ae0f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864043093484295526, guid: b92a0136f9a55774d930f8f154b6ae0f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8864043093484295526, guid: b92a0136f9a55774d930f8f154b6ae0f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b92a0136f9a55774d930f8f154b6ae0f, type: 3}
---- !u!1 &2141190027949557347 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8864043093484295451, guid: b92a0136f9a55774d930f8f154b6ae0f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7400646494155969400}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8026969878433624999
 PrefabInstance:
@@ -294,7 +254,7 @@ PrefabInstance:
     - target: {fileID: 1848704743309743039, guid: 82e573316f4d06a40901913fbec0e568,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1848704743309743039, guid: 82e573316f4d06a40901913fbec0e568,
         type: 3}
