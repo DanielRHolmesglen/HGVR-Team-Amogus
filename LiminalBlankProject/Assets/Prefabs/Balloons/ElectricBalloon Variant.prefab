@@ -12,6 +12,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7d11a25144cd9429f28dfdb356c9ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1257161432007748158
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6801011591783997514}
+    m_Modifications:
+    - target: {fileID: 6234474565661092527, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_Name
+      value: Electricity
+      objectReference: {fileID: 0}
+    - target: {fileID: 6234474565661092527, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237666390050112607, guid: 4352734f779cfe640872cacb0064221c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4352734f779cfe640872cacb0064221c, type: 3}
+--- !u!1 &5185640144388702353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6234474565661092527, guid: 4352734f779cfe640872cacb0064221c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1257161432007748158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3986233505252652181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22,7 +102,7 @@ PrefabInstance:
     - target: {fileID: 6874929112362231500, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: m_Name
-      value: ElectricBalloon
+      value: ElectricBalloon Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7580682159929775327, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
@@ -100,6 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
+      propertyPath: popParticles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
       propertyPath: popSoundPool.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 266b22bc4fbdb7d4a87c5bd13848012b, type: 3}
@@ -138,6 +223,11 @@ PrefabInstance:
       propertyPath: popped.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2986739233441380763, guid: b998ceb7084c19546a67b1d395e55213,
+        type: 3}
+      propertyPath: popParticles.Array.data[0]
+      value: 
+      objectReference: {fileID: 5185640144388702353}
     - target: {fileID: 6751998811314810564, guid: b998ceb7084c19546a67b1d395e55213,
         type: 3}
       propertyPath: scaleRange.x
@@ -173,6 +263,12 @@ PrefabInstance:
 --- !u!1 &7510128250657411673 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6874929112362231500, guid: b998ceb7084c19546a67b1d395e55213,
+    type: 3}
+  m_PrefabInstance: {fileID: 3986233505252652181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6801011591783997514 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7580682159929775327, guid: b998ceb7084c19546a67b1d395e55213,
     type: 3}
   m_PrefabInstance: {fileID: 3986233505252652181}
   m_PrefabAsset: {fileID: 0}
