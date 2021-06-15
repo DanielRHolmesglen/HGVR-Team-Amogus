@@ -97,11 +97,11 @@ public class Dart : MonoBehaviour
 
     public Vector3 PointTowardsBalloon(Vector3 origin, Vector3 velocity, float influence = 1.0f)
     {
-        Ray ray = new Ray(origin + velocity.normalized * 4.0f, velocity.normalized);
+        Ray ray = new Ray(origin + velocity.normalized * 3.0f, velocity.normalized);
         Vector3 closestPoint = Vector3.zero;
         float closestDis = Mathf.Infinity;
         Debug.DrawRay(ray.origin, velocity.normalized * velocity.magnitude * 0.5f);
-        foreach(RaycastHit hit in Physics.SphereCastAll(ray, 4.0f, velocity.magnitude * 0.5f))
+        foreach(RaycastHit hit in Physics.SphereCastAll(ray, 6.0f, velocity.magnitude))
         {
             if (hit.transform.gameObject.name == "Balloon")
             {
@@ -119,7 +119,7 @@ public class Dart : MonoBehaviour
 
     public void Throw(Vector3 force)
     {
-        force = PointTowardsBalloon(transform.position, force, 0.6f);
+        force = PointTowardsBalloon(transform.position, force, 0.75f);
         transform.SetParent(MovingMap.transform);
         mode = Mode.Projectile;
         inactive = false;
@@ -138,7 +138,7 @@ public class Dart : MonoBehaviour
         mode = Mode.Projectile;
         Vector3 oldVelocity = GetTimePoint(timePosition).velocity;
         bool keepOld = newForce == Vector3.zero;
-        velocity = PointTowardsBalloon(transform.position, keepOld ? oldVelocity : newForce);
+        velocity = PointTowardsBalloon(transform.position, keepOld ? oldVelocity : newForce, 0.9f);
         if (!keepOld)
             timeline.RemoveRange(0, timeline.Count - 1);
         else {
