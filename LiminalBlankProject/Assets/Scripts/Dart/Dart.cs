@@ -57,8 +57,6 @@ public class Dart : MonoBehaviour
         }
     }
 
-    float heldScaleFactor = 1.0f;
-
     TimePoint initialTransform;
     List<TimePoint> timeline;
     float timePosition;

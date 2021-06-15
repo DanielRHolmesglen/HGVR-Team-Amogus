@@ -10235,7 +10235,6 @@ MonoBehaviour:
   sourceA: {fileID: 544223316}
   sourceB: {fileID: 544223315}
   volumeMultiplier: 0.125
-  panSpeed: 0.1
 --- !u!82 &544223315
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16305,7 +16304,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
-  m_VertexStreams: 000315
+  m_VertexStreams: 00031501
   m_Mesh: {fileID: -5755197145248551033, guid: 9de1f176a05e0c649af9a3c712c6280e, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -35366,6 +35365,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3676583508561523044, guid: f92a23fd108b1594fae389628c8d2992,
+        type: 3}
+      propertyPath: m_Text
+      value: TIMER
+      objectReference: {fileID: 0}
     - target: {fileID: 3676583508561523045, guid: f92a23fd108b1594fae389628c8d2992,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -35400,11 +35404,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3676583508561523044, guid: f92a23fd108b1594fae389628c8d2992,
-        type: 3}
-      propertyPath: m_Text
-      value: TIMER
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f92a23fd108b1594fae389628c8d2992, type: 3}

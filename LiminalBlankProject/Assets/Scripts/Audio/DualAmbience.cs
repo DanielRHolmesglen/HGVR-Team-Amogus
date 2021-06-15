@@ -11,8 +11,6 @@ public class DualAmbience : MonoBehaviour
 
     [SerializeField]
     float volumeMultiplier = 0.05f;
-    [SerializeField]
-    float panSpeed = 0.1f;
 
     float volume = 0.0f;
     static readonly float MAX_PERLIN2D = Mathf.Sqrt(2f / 4f);
